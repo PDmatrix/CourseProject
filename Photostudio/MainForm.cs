@@ -7,58 +7,65 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Photostudio.TablesFields;
 
 namespace Photostudio
 {
     public partial class MainForm : Form
     {
-        //public static string SelectedTable = "ORDERS";
 
+        //Выбор таблицы
         private void SelectTable(string table)
         {
             table = table.ToUpper();
             TablesClass.SelectedTable = table;
-            selectedTableLabel.Text = $@"Выбрана таблица: {TablesClass.Table[table]}";
+            selectedTableLabel.Text = $@"Выбрана таблица: {TablesClass.TableDisplay[table]}";
             tableDescription.Text = TablesClass.TableDescription[table];
         }
 
+        //Вывод формы
         private void ShowForm<T>() where T : Form, new()
         {
             T formVar = new T();
-            formVar.Show();
             this.Hide();
-
+            formVar.ShowDialog();
+            this.Show();
         }
 
         public MainForm()
         {
             InitializeComponent();
-            SelectTable("ORDERS");
+            SelectTable(Tables.ORDERS.Name());
         }
 
         private void заказыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectTable("ORDERS");    
+            SelectTable(Tables.ORDERS.Name());    
         }
 
         private void фотографыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectTable("PHOTOGRAPHERS");
+            SelectTable(Tables.PHOTOGRAPHERS.Name());
         }
 
         private void ассистентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectTable("ASSISTANTS");
+            SelectTable(Tables.ASSISTANTS.Name());
         }
 
         private void заказчикиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectTable("CUSTOMERS");
+            SelectTable(Tables.CUSTOMERS.Name());
         }
 
         private void услугиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SelectTable("SERVICES");
+            SelectTable(Tables.SERVICES.Name());
+        }
+
+        private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectTable(Tables.ASSISTANCE.Name());
         }
 
         private void addRecBtn_Click(object sender, EventArgs e)
@@ -85,5 +92,7 @@ namespace Photostudio
         {
             Application.Exit();
         }
+
+        
     }
 }

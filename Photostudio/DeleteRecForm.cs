@@ -20,8 +20,8 @@ namespace Photostudio
 
         private void DeleteRecForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
+            //MainForm mainForm = new MainForm();
+            //mainForm.Show();
         }
     }
 }

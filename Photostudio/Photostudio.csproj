@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TablesFields.cs" />
     <EmbeddedResource Include="AddRecForm.resx">
       <DependentUpon>AddRecForm.cs</DependentUpon>
     </EmbeddedResource>

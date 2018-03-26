@@ -45,6 +45,7 @@
             this.deleteRecBtn = new System.Windows.Forms.Button();
             this.tableDescription = new System.Windows.Forms.RichTextBox();
             this.reportBtn = new System.Windows.Forms.Button();
+            this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,7 +88,8 @@
             this.фотографыToolStripMenuItem,
             this.ассистентыToolStripMenuItem,
             this.заказчикиToolStripMenuItem,
-            this.услугиToolStripMenuItem});
+            this.услугиToolStripMenuItem,
+            this.помощьToolStripMenuItem});
             this.таблицыToolStripMenuItem.Name = "таблицыToolStripMenuItem";
             this.таблицыToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.таблицыToolStripMenuItem.Text = "Таблицы";
@@ -203,6 +205,13 @@
             this.reportBtn.Text = "Составить отчет";
             this.reportBtn.UseVisualStyleBackColor = true;
             // 
+            // помощьToolStripMenuItem
+            // 
+            this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
+            this.помощьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.помощьToolStripMenuItem.Text = "Помощь";
+            this.помощьToolStripMenuItem.Click += new System.EventHandler(this.помощьToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,6 +256,7 @@
         private System.Windows.Forms.Button deleteRecBtn;
         private System.Windows.Forms.RichTextBox tableDescription;
         private System.Windows.Forms.Button reportBtn;
+        private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem;
     }
 }
 
