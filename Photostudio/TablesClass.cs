@@ -61,13 +61,32 @@ namespace Photostudio
         //Команда SQL
         private static readonly OleDbCommand DbCommand = new OleDbCommand();
 
+        
+        //Специальный DataSet для таблицы ASSISTANCE
+        private static DataSet AssisntaceDataser()
+        {
+            Conn.Open();
+            DbCommand.Connection = Conn;
+            DbCommand.CommandText = $"select ORDERS.ORD_Code,('Фотограф: ' + PHOTOGRAPHERS.PHO_Fullname + 'Заказчик: ' + CUSTOMERS.CUS_Fullname ) as PhoCus from (ORDERS inner join PHOTOGRAPHERS on ORDERS.ORD_PhoCode = PHOTOGRAPHERS.PHO_Code) inner join CUSTOMERS on ORDERS.ORD_CusCode = CUSTOMERS.CUS_Code";
+            DataSet ds = new DataSet();
+            OleDbDataAdapter da = new OleDbDataAdapter(DbCommand);
+            da.Fill(ds, SelectedTable);
+            return ds;
+        }
+
+        public static void FillComboBoxAssistance(ComboBox comboBox)
+        {
+            comboBox.DataSource = AssisntaceDataser().Tables[0];
+            comboBox.DisplayMember = "PhoCus";
+            comboBox.ValueMember = "ORD_Code";
+            Conn.Close();
+        }
+
         //Возвращает DataSet таблицы table
         private static DataSet NewDataSet(string table)
         {
             Conn.Open();
             DbCommand.Connection = Conn;
-            //Left Join для таблицы Assisntance
-            //DbCommand.CommandText = $"select * from {table} left join ORDERS on {table}.ASCE_OrdCode = ORDERS.ORD_Code";
             DbCommand.CommandText = $"select * from {table}";
             DataSet ds = new DataSet();
             OleDbDataAdapter da = new OleDbDataAdapter(DbCommand);
@@ -110,13 +129,13 @@ namespace Photostudio
             {
                 DbCommand.CommandText = $"INSERT INTO {table}({columns}) VALUES({values});";
                 DbCommand.ExecuteNonQuery();
-                MessageBox.Show("Запись добавлена!", "Успешно", MessageBoxButtons.OK);
+                MessageBox.Show(@"Запись добавлена!", @"Успешно", MessageBoxButtons.OK);
             }
             catch (Exception e)
             {
-                MessageBox.Show("Запись не добавлена!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"Запись не добавлена!", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //Console.WriteLine(e);
-                //throw;
+                throw;
             }
             finally
             {

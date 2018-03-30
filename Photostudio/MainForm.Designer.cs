@@ -38,6 +38,7 @@
             this.ассистентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.заказчикиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.услугиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectedTableLabel = new System.Windows.Forms.Label();
             this.addRecBtn = new System.Windows.Forms.Button();
             this.editRecBtn = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@
             this.deleteRecBtn = new System.Windows.Forms.Button();
             this.tableDescription = new System.Windows.Forms.RichTextBox();
             this.reportBtn = new System.Windows.Forms.Button();
-            this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,6 +129,13 @@
             this.услугиToolStripMenuItem.Text = "Услуги";
             this.услугиToolStripMenuItem.Click += new System.EventHandler(this.услугиToolStripMenuItem_Click);
             // 
+            // помощьToolStripMenuItem
+            // 
+            this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
+            this.помощьToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.помощьToolStripMenuItem.Text = "Помощь";
+            this.помощьToolStripMenuItem.Click += new System.EventHandler(this.помощьToolStripMenuItem_Click);
+            // 
             // selectedTableLabel
             // 
             this.selectedTableLabel.AutoSize = true;
@@ -204,13 +211,6 @@
             this.reportBtn.TabIndex = 7;
             this.reportBtn.Text = "Составить отчет";
             this.reportBtn.UseVisualStyleBackColor = true;
-            // 
-            // помощьToolStripMenuItem
-            // 
-            this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
-            this.помощьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.помощьToolStripMenuItem.Text = "Помощь";
-            this.помощьToolStripMenuItem.Click += new System.EventHandler(this.помощьToolStripMenuItem_Click);
             // 
             // MainForm
             // 

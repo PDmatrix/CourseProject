@@ -30,7 +30,8 @@ namespace Photostudio
             if (TablesClass.SelectedTable == Tables.ASSISTANCE.Name())
             {
                 TablesClass.FillComboBox(ASCE_AssistantCB, Tables.ASSISTANTS.Name(), AssistantsFileds.ASS_Fullname.Name(), AssistantsFileds.ASS_Code.Name());
-                TablesClass.FillComboBox(ASCE_OrderCB, Tables.PHOTOGRAPHERS.Name(), PhotographersFileds.PHO_Fullname.Name(), PhotographersFileds.PHO_Code.Name());
+                //TablesClass.FillComboBox(ASCE_OrderCB, Tables.ORDERS.Name(), OrdersFileds.ORD_Date.Name(), OrdersFileds.ORD_Code.Name());
+                TablesClass.FillComboBoxAssistance(ASCE_OrderCB);
             }
         }
 
@@ -85,7 +86,25 @@ namespace Photostudio
         //Добавление записи в талицу ASSISTANCE и PHOTOGRAPHERS не доделано
         private void ASCE_AddRecordBTN_Click(object sender, EventArgs e)
         {
+            TablesClass.AddRecord(Tables.ASSISTANCE.Name(), new Dictionary<string, string>
+            {
+                {AssistanceFileds.ASCE_AssCode.Name(), ASCE_AssistantCB.SelectedValue.ToString()},
+                {AssistanceFileds.ASCE_OrdCode.Name(), ASCE_OrderCB.SelectedValue.ToString()},
+            });
+            TablesClass.RefreshGrid(dataGrid);
+        }
 
+        private void PHO_AddRecordBTN_Click(object sender, EventArgs e)
+        {
+            TablesClass.AddRecord(Tables.PHOTOGRAPHERS.Name(), new Dictionary<string, string>
+            {
+                {PhotographersFileds.PHO_Fullname.Name(), PHO_FullnameTB.Text},
+                {PhotographersFileds.PHO_Experience.Name(), PHO_ExperienceTB.Text},
+                {PhotographersFileds.PHO_Date.Name(), PHO_DateMTB.Text},
+                {PhotographersFileds.PHO_Phone.Name(), PHO_PhoneMTB.Text},
+                {PhotographersFileds.PHO_Adress.Name(), PHO_AdressTB.Text}
+            });
+            TablesClass.RefreshGrid(dataGrid);
         }
     }
 }
