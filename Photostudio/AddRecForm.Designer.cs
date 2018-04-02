@@ -554,6 +554,7 @@
             this.ASCE_OrderCB.Name = "ASCE_OrderCB";
             this.ASCE_OrderCB.Size = new System.Drawing.Size(451, 21);
             this.ASCE_OrderCB.TabIndex = 1;
+            this.ASCE_OrderCB.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ASCE_OrderCB_Format);
             // 
             // ASCE_AssistantCB
             // 

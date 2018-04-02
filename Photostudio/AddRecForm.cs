@@ -27,15 +27,14 @@ namespace Photostudio
                 TablesClass.FillComboBox(ORD_PhotographersCB, Tables.PHOTOGRAPHERS.Name(), PhotographersFileds.PHO_Fullname.Name(), PhotographersFileds.PHO_Code.Name());
                 TablesClass.FillComboBox(ORD_ServicesCB, Tables.SERVICES.Name(), ServicesFileds.SER_Description.Name(), ServicesFileds.SER_Code.Name());
             }
-            if (TablesClass.SelectedTable == Tables.ASSISTANCE.Name())
+            else if (TablesClass.SelectedTable == Tables.ASSISTANCE.Name())
             {
                 TablesClass.FillComboBox(ASCE_AssistantCB, Tables.ASSISTANTS.Name(), AssistantsFileds.ASS_Fullname.Name(), AssistantsFileds.ASS_Code.Name());
-                //TablesClass.FillComboBox(ASCE_OrderCB, Tables.ORDERS.Name(), OrdersFileds.ORD_Date.Name(), OrdersFileds.ORD_Code.Name());
                 TablesClass.FillComboBoxAssistance(ASCE_OrderCB);
             }
         }
 
-        //Добавление записи в талицу ORDERS
+        //Добавление записи в таблицу ORDERS
         private void ORD_AddRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.AddRecord(Tables.ORDERS.Name(), new Dictionary<string, string>
@@ -49,7 +48,7 @@ namespace Photostudio
             TablesClass.RefreshGrid(dataGrid);
         }
 
-        //Добавление записи в талицу CUSTOMERS
+        //Добавление записи в таблицу CUSTOMERS
         private void CUS_AddRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.AddRecord(Tables.CUSTOMERS.Name(), new Dictionary<string, string>
@@ -61,7 +60,7 @@ namespace Photostudio
             TablesClass.RefreshGrid(dataGrid);
         }
 
-        //Добавление записи в талицу SERVICES
+        //Добавление записи в таблицу SERVICES
         private void SER_AddRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.AddRecord(Tables.SERVICES.Name(), new Dictionary<string, string>
@@ -72,7 +71,7 @@ namespace Photostudio
             TablesClass.RefreshGrid(dataGrid);
         }
 
-        //Добавление записи в талицу ASSISTANTS
+        //Добавление записи в таблицу ASSISTANTS
         private void ASS_AddRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.AddRecord(Tables.ASSISTANTS.Name(), new Dictionary<string, string>
@@ -83,7 +82,7 @@ namespace Photostudio
             TablesClass.RefreshGrid(dataGrid);
         }
 
-        //Добавление записи в талицу ASSISTANCE и PHOTOGRAPHERS не доделано
+        //Добавление записи в таблицу ASSISTANCE
         private void ASCE_AddRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.AddRecord(Tables.ASSISTANCE.Name(), new Dictionary<string, string>
@@ -94,6 +93,7 @@ namespace Photostudio
             TablesClass.RefreshGrid(dataGrid);
         }
 
+        //Добавление записи в таблицу PHOTOGRAPHERS
         private void PHO_AddRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.AddRecord(Tables.PHOTOGRAPHERS.Name(), new Dictionary<string, string>
@@ -105,6 +105,23 @@ namespace Photostudio
                 {PhotographersFileds.PHO_Adress.Name(), PHO_AdressTB.Text}
             });
             TablesClass.RefreshGrid(dataGrid);
+        }
+
+
+        //Форматирование ComboBox для отображения
+        private void ASCE_OrderCB_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string[] names = e.Value.ToString().Split(';');
+            try
+            {
+                e.Value = $@"Фотограф: {TablesClass.Abbrivation(names[0])} Заказчик: {TablesClass.Abbrivation(names[1])}";
+            }
+            catch (Exception exception)
+            {
+                //Console.WriteLine(exception);
+                //throw;
+            }
+            
         }
     }
 }

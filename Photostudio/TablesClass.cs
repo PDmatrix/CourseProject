@@ -63,11 +63,12 @@ namespace Photostudio
 
         
         //Специальный DataSet для таблицы ASSISTANCE
-        private static DataSet AssisntaceDataser()
+        private static DataSet AssisntanceDataset()
         {
             Conn.Open();
             DbCommand.Connection = Conn;
-            DbCommand.CommandText = $"select ORDERS.ORD_Code,('Фотограф: ' + PHOTOGRAPHERS.PHO_Fullname + 'Заказчик: ' + CUSTOMERS.CUS_Fullname ) as PhoCus from (ORDERS inner join PHOTOGRAPHERS on ORDERS.ORD_PhoCode = PHOTOGRAPHERS.PHO_Code) inner join CUSTOMERS on ORDERS.ORD_CusCode = CUSTOMERS.CUS_Code";
+            //DbCommand.CommandText = $"select ORDERS.ORD_Code,('Фотограф: ' + PHOTOGRAPHERS.PHO_Fullname + 'Заказчик: ' + CUSTOMERS.CUS_Fullname ) as PhoCus from (ORDERS inner join PHOTOGRAPHERS on ORDERS.ORD_PhoCode = PHOTOGRAPHERS.PHO_Code) inner join CUSTOMERS on ORDERS.ORD_CusCode = CUSTOMERS.CUS_Code";
+            DbCommand.CommandText = "select ORDERS.ORD_Code,(PHOTOGRAPHERS.PHO_Fullname + ';' + CUSTOMERS.CUS_Fullname + ';') as PhoCus from (ORDERS inner join PHOTOGRAPHERS on ORDERS.ORD_PhoCode = PHOTOGRAPHERS.PHO_Code) inner join CUSTOMERS on ORDERS.ORD_CusCode = CUSTOMERS.CUS_Code";
             DataSet ds = new DataSet();
             OleDbDataAdapter da = new OleDbDataAdapter(DbCommand);
             da.Fill(ds, SelectedTable);
@@ -76,7 +77,7 @@ namespace Photostudio
 
         public static void FillComboBoxAssistance(ComboBox comboBox)
         {
-            comboBox.DataSource = AssisntaceDataser().Tables[0];
+            comboBox.DataSource = AssisntanceDataset().Tables[0];
             comboBox.DisplayMember = "PhoCus";
             comboBox.ValueMember = "ORD_Code";
             Conn.Close();
@@ -133,14 +134,21 @@ namespace Photostudio
             }
             catch (Exception e)
             {
-                MessageBox.Show(@"Запись не добавлена!", @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //Console.WriteLine(e);
+                MessageBox.Show(@"Запись не добавлена!" + Environment.NewLine + e.Message, @"Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
+                //Console.WriteLine(e);
             }
             finally
             {
                 Conn.Close();
             }
+        }
+
+        public static string Abbrivation(string fullname, char symbol = ' ')
+        {
+            var namesplit = fullname.Split(symbol);
+            char sec = namesplit[1][0].ToString() == '﻿'.ToString() ? namesplit[1][1] : namesplit[1][0];
+            return $"{namesplit[0]} {sec}. {namesplit[2][0]}.";
         }
     }
 }
