@@ -51,6 +51,7 @@
     <Compile Include="AddRecForm.Designer.cs">
       <DependentUpon>AddRecForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComponentsClass.cs" />
     <Compile Include="DeleteRecForm.cs">
       <SubType>Form</SubType>
     </Compile>

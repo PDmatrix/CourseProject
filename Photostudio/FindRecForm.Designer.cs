@@ -30,23 +30,23 @@
         {
             this.OrdersGB = new System.Windows.Forms.GroupBox();
             this.PhotographersGB = new System.Windows.Forms.GroupBox();
-            this.AssistantsGB = new System.Windows.Forms.GroupBox();
-            this.CustomersGB = new System.Windows.Forms.GroupBox();
-            this.ServicesGB = new System.Windows.Forms.GroupBox();
-            this.AssistanceGB = new System.Windows.Forms.GroupBox();
-            this.dataGrid = new System.Windows.Forms.DataGridView();
-            this.ASS_FullnameCB = new System.Windows.Forms.ComboBox();
-            this.ASS_FullnameLabel = new System.Windows.Forms.Label();
-            this.ASS_FindRecordBTN = new System.Windows.Forms.Button();
             this.PHO_FindRecordBTN = new System.Windows.Forms.Button();
             this.PHO_FullnameLabel = new System.Windows.Forms.Label();
             this.PHO_FullnameCB = new System.Windows.Forms.ComboBox();
+            this.AssistantsGB = new System.Windows.Forms.GroupBox();
+            this.ASS_FindRecordBTN = new System.Windows.Forms.Button();
+            this.ASS_FullnameLabel = new System.Windows.Forms.Label();
+            this.ASS_FullnameCB = new System.Windows.Forms.ComboBox();
+            this.CustomersGB = new System.Windows.Forms.GroupBox();
             this.CUS_FindRecordBTN = new System.Windows.Forms.Button();
             this.CUS_FullnameLabel = new System.Windows.Forms.Label();
             this.CUS_FullnameCB = new System.Windows.Forms.ComboBox();
+            this.ServicesGB = new System.Windows.Forms.GroupBox();
             this.SER_FindRecordBTN = new System.Windows.Forms.Button();
             this.SER_DescriptionLabel = new System.Windows.Forms.Label();
             this.SER_DescriptionCB = new System.Windows.Forms.ComboBox();
+            this.AssistanceGB = new System.Windows.Forms.GroupBox();
+            this.dataGrid = new System.Windows.Forms.DataGridView();
             this.PhotographersGB.SuspendLayout();
             this.AssistantsGB.SuspendLayout();
             this.CustomersGB.SuspendLayout();
@@ -77,90 +77,6 @@
             this.PhotographersGB.Text = "Таблица: Фотографы";
             this.PhotographersGB.Visible = false;
             // 
-            // AssistantsGB
-            // 
-            this.AssistantsGB.Controls.Add(this.ASS_FindRecordBTN);
-            this.AssistantsGB.Controls.Add(this.ASS_FullnameLabel);
-            this.AssistantsGB.Controls.Add(this.ASS_FullnameCB);
-            this.AssistantsGB.Location = new System.Drawing.Point(12, 12);
-            this.AssistantsGB.Name = "AssistantsGB";
-            this.AssistantsGB.Size = new System.Drawing.Size(489, 352);
-            this.AssistantsGB.TabIndex = 2;
-            this.AssistantsGB.TabStop = false;
-            this.AssistantsGB.Text = "Таблица: Ассистенты";
-            this.AssistantsGB.Visible = false;
-            // 
-            // CustomersGB
-            // 
-            this.CustomersGB.Controls.Add(this.CUS_FindRecordBTN);
-            this.CustomersGB.Controls.Add(this.CUS_FullnameLabel);
-            this.CustomersGB.Controls.Add(this.CUS_FullnameCB);
-            this.CustomersGB.Location = new System.Drawing.Point(12, 12);
-            this.CustomersGB.Name = "CustomersGB";
-            this.CustomersGB.Size = new System.Drawing.Size(489, 352);
-            this.CustomersGB.TabIndex = 3;
-            this.CustomersGB.TabStop = false;
-            this.CustomersGB.Text = "Таблица: Заказчики";
-            this.CustomersGB.Visible = false;
-            // 
-            // ServicesGB
-            // 
-            this.ServicesGB.Controls.Add(this.SER_FindRecordBTN);
-            this.ServicesGB.Controls.Add(this.SER_DescriptionLabel);
-            this.ServicesGB.Controls.Add(this.SER_DescriptionCB);
-            this.ServicesGB.Location = new System.Drawing.Point(12, 12);
-            this.ServicesGB.Name = "ServicesGB";
-            this.ServicesGB.Size = new System.Drawing.Size(489, 352);
-            this.ServicesGB.TabIndex = 4;
-            this.ServicesGB.TabStop = false;
-            this.ServicesGB.Text = "Таблица: Услуги";
-            this.ServicesGB.Visible = false;
-            // 
-            // AssistanceGB
-            // 
-            this.AssistanceGB.Location = new System.Drawing.Point(12, 12);
-            this.AssistanceGB.Name = "AssistanceGB";
-            this.AssistanceGB.Size = new System.Drawing.Size(489, 352);
-            this.AssistanceGB.TabIndex = 4;
-            this.AssistanceGB.TabStop = false;
-            this.AssistanceGB.Text = "Таблица: Помощь";
-            this.AssistanceGB.Visible = false;
-            // 
-            // dataGrid
-            // 
-            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid.Location = new System.Drawing.Point(523, 13);
-            this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(656, 367);
-            this.dataGrid.TabIndex = 5;
-            // 
-            // ASS_FullnameCB
-            // 
-            this.ASS_FullnameCB.FormattingEnabled = true;
-            this.ASS_FullnameCB.Location = new System.Drawing.Point(20, 37);
-            this.ASS_FullnameCB.Name = "ASS_FullnameCB";
-            this.ASS_FullnameCB.Size = new System.Drawing.Size(218, 21);
-            this.ASS_FullnameCB.TabIndex = 0;
-            // 
-            // ASS_FullnameLabel
-            // 
-            this.ASS_FullnameLabel.AutoSize = true;
-            this.ASS_FullnameLabel.Location = new System.Drawing.Point(6, 21);
-            this.ASS_FullnameLabel.Name = "ASS_FullnameLabel";
-            this.ASS_FullnameLabel.Size = new System.Drawing.Size(34, 13);
-            this.ASS_FullnameLabel.TabIndex = 1;
-            this.ASS_FullnameLabel.Text = "ФИО";
-            // 
-            // ASS_FindRecordBTN
-            // 
-            this.ASS_FindRecordBTN.Location = new System.Drawing.Point(9, 323);
-            this.ASS_FindRecordBTN.Name = "ASS_FindRecordBTN";
-            this.ASS_FindRecordBTN.Size = new System.Drawing.Size(140, 23);
-            this.ASS_FindRecordBTN.TabIndex = 2;
-            this.ASS_FindRecordBTN.Text = "Найти запись";
-            this.ASS_FindRecordBTN.UseVisualStyleBackColor = true;
-            this.ASS_FindRecordBTN.Click += new System.EventHandler(this.ASS_FindRecordBTN_Click);
-            // 
             // PHO_FindRecordBTN
             // 
             this.PHO_FindRecordBTN.Location = new System.Drawing.Point(9, 323);
@@ -187,6 +103,59 @@
             this.PHO_FullnameCB.Name = "PHO_FullnameCB";
             this.PHO_FullnameCB.Size = new System.Drawing.Size(218, 21);
             this.PHO_FullnameCB.TabIndex = 3;
+            // 
+            // AssistantsGB
+            // 
+            this.AssistantsGB.Controls.Add(this.ASS_FindRecordBTN);
+            this.AssistantsGB.Controls.Add(this.ASS_FullnameLabel);
+            this.AssistantsGB.Controls.Add(this.ASS_FullnameCB);
+            this.AssistantsGB.Location = new System.Drawing.Point(12, 12);
+            this.AssistantsGB.Name = "AssistantsGB";
+            this.AssistantsGB.Size = new System.Drawing.Size(489, 352);
+            this.AssistantsGB.TabIndex = 2;
+            this.AssistantsGB.TabStop = false;
+            this.AssistantsGB.Text = "Таблица: Ассистенты";
+            this.AssistantsGB.Visible = false;
+            // 
+            // ASS_FindRecordBTN
+            // 
+            this.ASS_FindRecordBTN.Location = new System.Drawing.Point(9, 323);
+            this.ASS_FindRecordBTN.Name = "ASS_FindRecordBTN";
+            this.ASS_FindRecordBTN.Size = new System.Drawing.Size(140, 23);
+            this.ASS_FindRecordBTN.TabIndex = 2;
+            this.ASS_FindRecordBTN.Text = "Найти запись";
+            this.ASS_FindRecordBTN.UseVisualStyleBackColor = true;
+            this.ASS_FindRecordBTN.Click += new System.EventHandler(this.ASS_FindRecordBTN_Click);
+            // 
+            // ASS_FullnameLabel
+            // 
+            this.ASS_FullnameLabel.AutoSize = true;
+            this.ASS_FullnameLabel.Location = new System.Drawing.Point(6, 21);
+            this.ASS_FullnameLabel.Name = "ASS_FullnameLabel";
+            this.ASS_FullnameLabel.Size = new System.Drawing.Size(34, 13);
+            this.ASS_FullnameLabel.TabIndex = 1;
+            this.ASS_FullnameLabel.Text = "ФИО";
+            // 
+            // ASS_FullnameCB
+            // 
+            this.ASS_FullnameCB.FormattingEnabled = true;
+            this.ASS_FullnameCB.Location = new System.Drawing.Point(20, 37);
+            this.ASS_FullnameCB.Name = "ASS_FullnameCB";
+            this.ASS_FullnameCB.Size = new System.Drawing.Size(218, 21);
+            this.ASS_FullnameCB.TabIndex = 0;
+            // 
+            // CustomersGB
+            // 
+            this.CustomersGB.Controls.Add(this.CUS_FindRecordBTN);
+            this.CustomersGB.Controls.Add(this.CUS_FullnameLabel);
+            this.CustomersGB.Controls.Add(this.CUS_FullnameCB);
+            this.CustomersGB.Location = new System.Drawing.Point(12, 12);
+            this.CustomersGB.Name = "CustomersGB";
+            this.CustomersGB.Size = new System.Drawing.Size(489, 352);
+            this.CustomersGB.TabIndex = 3;
+            this.CustomersGB.TabStop = false;
+            this.CustomersGB.Text = "Таблица: Заказчики";
+            this.CustomersGB.Visible = false;
             // 
             // CUS_FindRecordBTN
             // 
@@ -215,6 +184,19 @@
             this.CUS_FullnameCB.Size = new System.Drawing.Size(218, 21);
             this.CUS_FullnameCB.TabIndex = 3;
             // 
+            // ServicesGB
+            // 
+            this.ServicesGB.Controls.Add(this.SER_FindRecordBTN);
+            this.ServicesGB.Controls.Add(this.SER_DescriptionLabel);
+            this.ServicesGB.Controls.Add(this.SER_DescriptionCB);
+            this.ServicesGB.Location = new System.Drawing.Point(12, 12);
+            this.ServicesGB.Name = "ServicesGB";
+            this.ServicesGB.Size = new System.Drawing.Size(489, 352);
+            this.ServicesGB.TabIndex = 4;
+            this.ServicesGB.TabStop = false;
+            this.ServicesGB.Text = "Таблица: Услуги";
+            this.ServicesGB.Visible = false;
+            // 
             // SER_FindRecordBTN
             // 
             this.SER_FindRecordBTN.Location = new System.Drawing.Point(9, 314);
@@ -242,6 +224,24 @@
             this.SER_DescriptionCB.Size = new System.Drawing.Size(218, 21);
             this.SER_DescriptionCB.TabIndex = 3;
             // 
+            // AssistanceGB
+            // 
+            this.AssistanceGB.Location = new System.Drawing.Point(12, 12);
+            this.AssistanceGB.Name = "AssistanceGB";
+            this.AssistanceGB.Size = new System.Drawing.Size(489, 352);
+            this.AssistanceGB.TabIndex = 4;
+            this.AssistanceGB.TabStop = false;
+            this.AssistanceGB.Text = "Таблица: Помощь";
+            this.AssistanceGB.Visible = false;
+            // 
+            // dataGrid
+            // 
+            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid.Location = new System.Drawing.Point(523, 13);
+            this.dataGrid.Name = "dataGrid";
+            this.dataGrid.Size = new System.Drawing.Size(656, 367);
+            this.dataGrid.TabIndex = 5;
+            // 
             // FindRecForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,7 +257,6 @@
             this.Name = "FindRecForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Найти запись";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FindRecForm_FormClosing);
             this.PhotographersGB.ResumeLayout(false);
             this.PhotographersGB.PerformLayout();
             this.AssistantsGB.ResumeLayout(false);

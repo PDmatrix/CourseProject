@@ -23,13 +23,17 @@ namespace Photostudio
             //Заполнение ComboBox в зависимости от выбранной таблицы
             if (TablesClass.SelectedTable == Tables.ORDERS.Name())
             {
-                TablesClass.FillComboBox(ORD_CustomersCB, Tables.CUSTOMERS.Name(), CustomerFields.CUS_Fullname.Name(), CustomerFields.CUS_Code.Name());
-                TablesClass.FillComboBox(ORD_PhotographersCB, Tables.PHOTOGRAPHERS.Name(), PhotographersFileds.PHO_Fullname.Name(), PhotographersFileds.PHO_Code.Name());
-                TablesClass.FillComboBox(ORD_ServicesCB, Tables.SERVICES.Name(), ServicesFileds.SER_Description.Name(), ServicesFileds.SER_Code.Name());
+                TablesClass.FillComboBox(ORD_CustomersCB, Tables.CUSTOMERS.Name(), CustomerFields.CUS_Fullname.Name(),
+                    CustomerFields.CUS_Code.Name());
+                TablesClass.FillComboBox(ORD_PhotographersCB, Tables.PHOTOGRAPHERS.Name(),
+                    PhotographersFileds.PHO_Fullname.Name(), PhotographersFileds.PHO_Code.Name());
+                TablesClass.FillComboBox(ORD_ServicesCB, Tables.SERVICES.Name(), ServicesFileds.SER_Description.Name(),
+                    ServicesFileds.SER_Code.Name());
             }
             else if (TablesClass.SelectedTable == Tables.ASSISTANCE.Name())
             {
-                TablesClass.FillComboBox(ASCE_AssistantCB, Tables.ASSISTANTS.Name(), AssistantsFileds.ASS_Fullname.Name(), AssistantsFileds.ASS_Code.Name());
+                TablesClass.FillComboBox(ASCE_AssistantCB, Tables.ASSISTANTS.Name(),
+                    AssistantsFileds.ASS_Fullname.Name(), AssistantsFileds.ASS_Code.Name());
                 TablesClass.FillComboBoxAssistance(ASCE_OrderCB);
             }
         }
@@ -114,14 +118,14 @@ namespace Photostudio
             string[] names = e.Value.ToString().Split(';');
             try
             {
-                e.Value = $@"Фотограф: {TablesClass.Abbrivation(names[0])} Заказчик: {TablesClass.Abbrivation(names[1])}";
+                e.Value =
+                    $@"Фотограф: {TablesClass.Abbrivation(names[0])} Заказчик: {TablesClass.Abbrivation(names[1])}";
             }
             catch (Exception exception)
             {
                 //Console.WriteLine(exception);
                 //throw;
             }
-            
         }
     }
 }
