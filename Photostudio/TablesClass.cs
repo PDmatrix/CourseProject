@@ -32,12 +32,12 @@ namespace Photostudio
         public static readonly Dictionary<string, string> FieldsDisplay = new Dictionary<string, string>
         {
             {AssistantsFileds.ASS_Code.Name(), "Код заказа"},
-            {AssistantsFileds.ASS_Fullname.Name(), "ФИО"},
+            {AssistantsFileds.ASS_Fullname.Name(), "ФИО ассистента"},
             {AssistantsFileds.ASS_Phone.Name(), "Номер телефона"},
 
             {CustomerFields.CUS_Code.Name(), "Код заказчика"},
-            {CustomerFields.CUS_Fullname.Name(), "ФИО"},
-            {CustomerFields.CUS_Adress.Name(), "Адрес"},
+            {CustomerFields.CUS_Fullname.Name(), "ФИО заказчика"},
+            {CustomerFields.CUS_Adress.Name(), "Адрес заказчика"},
             {CustomerFields.CUS_Phone.Name(), "Номер телефона"},
 
             {OrdersFileds.ORD_Code.Name(), "Код заказа"},
@@ -51,7 +51,7 @@ namespace Photostudio
             {PhotographersFileds.PHO_Adress.Name(), "Адрес"},
             {PhotographersFileds.PHO_Date.Name(), "Дата рождения"},
             {PhotographersFileds.PHO_Experience.Name(), "Опыт"},
-            {PhotographersFileds.PHO_Fullname.Name(), "ФИО"},
+            {PhotographersFileds.PHO_Fullname.Name(), "ФИО фотографа"},
             {PhotographersFileds.PHO_Phone.Name(), "Номер телефона"},
 
             {ServicesFileds.SER_Code.Name(), "Код услуги"},
@@ -72,15 +72,15 @@ namespace Photostudio
             },
             {
                 Tables.PHOTOGRAPHERS.Name(), "Таблица представляет собой фотографов. Содержит код фотографа, " +
-                                             "фамилию, имя, отчество, стаж работы, дату рождения, телефон и адрес."
+                                             "ФИО, стаж работы, дату рождения, телефон и адрес."
             },
             {
                 Tables.ASSISTANTS.Name(), "Таблица представляет собой ассистентов. Содержит код ассистента, " +
-                                          "фамилию, имя, отчество и телефон."
+                                          "ФИО и телефон."
             },
             {
                 Tables.CUSTOMERS.Name(), "Таблица представляет собой заказчиков. Содержит код заказчика, " +
-                                         "фамилию, имя, отчество, адрес и телефон."
+                                         "ФИО, адрес и телефон."
             },
             {
                 Tables.SERVICES.Name(), "Таблица представляет собой услуги фотостудии. Содержит код услуги, " +
@@ -112,25 +112,33 @@ namespace Photostudio
             gbCollection.Find(SelectedTable[0] + SelectedTable.ToLower().Remove(0, 1) + "GB", false)[0].Visible = true;
         }
 
-
-        //Специальный DataSet для таблицы ASSISTANCE
-        private static DataSet AssisntanceDataset()
+        public static void FillComboBoxAssistance(ComboBox comboBox)
         {
             Conn.Open();
             DbCommand.Connection = Conn;
             DbCommand.CommandText =
-                "select ORDERS.ORD_Code,(PHOTOGRAPHERS.PHO_Fullname + ';' + CUSTOMERS.CUS_Fullname + ';') as PhoCus from (ORDERS inner join PHOTOGRAPHERS on ORDERS.ORD_PhoCode = PHOTOGRAPHERS.PHO_Code) inner join CUSTOMERS on ORDERS.ORD_CusCode = CUSTOMERS.CUS_Code";
+                "select ORDERS.ORD_Code,(CUSTOMERS.CUS_Fullname + ';' + PHOTOGRAPHERS.PHO_Fullname + ';') as PhoCus from (ORDERS inner join PHOTOGRAPHERS on ORDERS.ORD_PhoCode = PHOTOGRAPHERS.PHO_Code) inner join CUSTOMERS on ORDERS.ORD_CusCode = CUSTOMERS.CUS_Code";
             var ds = new DataSet();
             var da = new OleDbDataAdapter(DbCommand);
             da.Fill(ds, SelectedTable);
-            return ds;
-        }
-
-        public static void FillComboBoxAssistance(ComboBox comboBox)
-        {
-            comboBox.DataSource = AssisntanceDataset().Tables[0];
+            comboBox.DataSource = ds.Tables[0];
             comboBox.DisplayMember = "PhoCus";
             comboBox.ValueMember = "ORD_Code";
+            Conn.Close();
+        }
+
+        public static void FillComboBoxFindAssistance(ComboBox comboBox)
+        {
+            Conn.Open();
+            DbCommand.Connection = Conn;
+            DbCommand.CommandText =
+                "select ASSISTANCE.ASCE_Code,(ASSISTANTS.ASS_Fullname + ';' + CUSTOMERS.CUS_Fullname + ';' + PHOTOGRAPHERS.PHO_Fullname + ';') as AssPhoCus from (((ASSISTANCE inner join ORDERS on ASSISTANCE.ASCE_OrdCode = ORDERS.ORD_Code) inner join PHOTOGRAPHERS on ORDERS.ORD_PhoCode = PHOTOGRAPHERS.PHO_Code) inner join CUSTOMERS on ORDERS.ORD_CusCode = CUSTOMERS.CUS_Code) inner join ASSISTANTS on ASSISTANCE.ASCE_AssCode = ASSISTANTS.ASS_Code";
+            var ds = new DataSet();
+            var da = new OleDbDataAdapter(DbCommand);
+            da.Fill(ds, SelectedTable);
+            comboBox.DataSource = ds.Tables[0];
+            comboBox.DisplayMember = "AssPhoCus";
+            comboBox.ValueMember = "ASCE_Code";
             Conn.Close();
         }
 
@@ -196,7 +204,6 @@ namespace Photostudio
                 Conn.Close();
             }
         }
-
         public static string FindRecord(string table, string cond)
         {
             Conn.Open();
@@ -207,7 +214,7 @@ namespace Photostudio
             {
                 using (OleDbDataReader reader = DbCommand.ExecuteReader())
                 {
-                    while (reader.Read())
+                    while (reader != null && reader.Read())
                     {
                         for (int i = 1; i < reader.FieldCount; i++)
                         {
@@ -230,6 +237,118 @@ namespace Photostudio
                 Conn.Close();
             }
             return ret;
+        }
+
+        public static string FindRecord(string table, string cond, Dictionary<string, Dictionary<string, string>> vals)
+        {
+            Conn.Open();
+            DbCommand.Connection = Conn;
+            DbCommand.CommandText = $"select * from {table} where {cond}";
+            List<string> name = new List<string>();
+            List<string> val = new List<string>();
+            try
+            {
+                using (OleDbDataReader reader = DbCommand.ExecuteReader())
+                {
+                    while (reader != null && reader.Read())
+                    {
+                        for (int i = 1; i < reader.FieldCount; i++)
+                        {
+                            name.Add(FieldsDisplay[reader.GetName(i)]);
+                            val.Add(reader.GetValue(i).GetType().IsEquivalentTo(typeof(DateTime))
+                                ? reader.GetDateTime(i).ToShortDateString()
+                                : (reader.GetValue(i).ToString() == "False")
+                                    ? "Не выполнен"
+                                    : (reader.GetValue(i).ToString() == "True")
+                                        ? "Выполнен"
+                                        : reader.GetValue(i).ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(@"Ошибка при поиске!" + Environment.NewLine + e.Message, @"Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //throw;
+            }
+            finally
+            {
+                Conn.Close();
+            }
+            List<string> conds = new List<string>(val.Where(r => int.TryParse(r, out int _)));
+            if (conds.Count != vals.Count)
+            {
+                throw new Exception("Не совпадает длина параметров");
+            }
+
+            string ret = "";
+            try
+            {
+                Conn.Open();
+                DbCommand.Connection = Conn;
+                int i;
+                for (i = 0; i < conds.Count; i++)
+                {
+                    DbCommand.CommandText = $"select {vals.ElementAt(i).Value.ElementAt(0).Key} from {vals.ElementAt(i).Key} where {vals.ElementAt(i).Value.ElementAt(0).Value} = {conds[i]}";
+                    using (OleDbDataReader reader = DbCommand.ExecuteReader())
+                    {
+                        while (reader != null && reader.Read())
+                        {
+                            for (int j = 0; j < vals.ElementAt(i).Value.ElementAt(0).Key.Split(',').Length; j++)
+                            {
+                                ret = ret + FieldsDisplay[reader.GetName(j)] + ": " + (reader.GetValue(j).GetType().IsEquivalentTo(typeof(DateTime))
+                                          ? reader.GetDateTime(j).ToShortDateString()
+                                          : (reader.GetValue(j).ToString() == "False")
+                                              ? "Не выполнен"
+                                              : (reader.GetValue(j).ToString() == "True")
+                                                  ? "Выполнен"
+                                                  : reader.GetValue(j).ToString()) + '\n';
+                            }
+                            val.Remove(val.First());
+                            name.Remove(name.First());
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(@"Ошибка при поиске!" + Environment.NewLine + e.Message, @"Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //throw;
+            }
+            finally
+            {
+                Conn.Close();
+            }
+            for (int i = 0; i < val.Count; i++)
+            {
+                ret = ret + name[i] + ": " + val[i] + '\n';
+            }
+            return ret;
+        }
+
+        public static void DeleteRecord(string table, string cond)
+        {
+            Conn.Open();
+            DbCommand.Connection = Conn;
+            try
+            {
+                DbCommand.CommandText = $"delete from {table} where {cond}";
+                DbCommand.ExecuteNonQuery();
+                MessageBox.Show(@"Запись удалена!", @"Успешно", MessageBoxButtons.OK);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(@"Ошибка при удалении!" + Environment.NewLine + e.Message, @"Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //throw;
+                //Console.WriteLine(e);
+            }
+            finally
+            {
+                Conn.Close();
+            }
         }
 
         public static string Abbrivation(string fullname, char symbol = ' ')

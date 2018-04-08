@@ -119,7 +119,7 @@ namespace Photostudio
             try
             {
                 e.Value =
-                    $@"Фотограф: {TablesClass.Abbrivation(names[0])} Заказчик: {TablesClass.Abbrivation(names[1])}";
+                    $@"Заказчик: {TablesClass.Abbrivation(names[0])} Фотограф: {TablesClass.Abbrivation(names[1])}";
             }
             catch (Exception exception)
             {

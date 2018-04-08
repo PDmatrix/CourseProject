@@ -20,12 +20,11 @@ namespace Photostudio
             TablesClass.RefreshGrid(dataGrid);
             if (TablesClass.SelectedTable == Tables.ORDERS.Name())
             {
-                //TablesClass.FillComboBox(ORD_CustomersCB, Tables.CUSTOMERS.Name(), CustomerFields.CUS_Fullname.Name(), CustomerFields.CUS_Code.Name());
+                TablesClass.FillComboBoxAssistance(ORD_OrderCB);
             }
             else if (TablesClass.SelectedTable == Tables.ASSISTANCE.Name())
             {
-                //TablesClass.FillComboBox(ASCE_AssistantCB, Tables.ASSISTANTS.Name(), AssistantsFileds.ASS_Fullname.Name(), AssistantsFileds.ASS_Code.Name());
-                //TablesClass.FillComboBoxAssistance(ASCE_OrderCB);
+                TablesClass.FillComboBoxFindAssistance(ASCE_HelpCB);
             }
             else if (TablesClass.SelectedTable == Tables.ASSISTANTS.Name())
             {
@@ -79,6 +78,59 @@ namespace Photostudio
                 TablesClass.FindRecord(TablesClass.SelectedTable,
                     SER_DescriptionCB.ValueMember + " = " + SER_DescriptionCB.SelectedValue),
                 TablesClass.TableDisplay[TablesClass.SelectedTable]);
+        }
+
+        private void ORD_FindRecordBTN_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                TablesClass.FindRecord(TablesClass.SelectedTable,
+                    ORD_OrderCB.ValueMember + " = " + ORD_OrderCB.SelectedValue, new Dictionary<string,Dictionary<string,string>>
+                    {
+                        {Tables.CUSTOMERS.Name(), new Dictionary<string, string> {{CustomerFields.CUS_Fullname.Name(), CustomerFields.CUS_Code.Name()}}},
+                        {Tables.PHOTOGRAPHERS.Name(), new Dictionary<string, string> {{PhotographersFileds.PHO_Fullname.Name(), PhotographersFileds.PHO_Code.Name()}}},
+                        {Tables.SERVICES.Name(), new Dictionary<string, string> {{ServicesFileds.SER_Description.Name(), ServicesFileds.SER_Code.Name()}}}
+                    }),
+                TablesClass.TableDisplay[TablesClass.SelectedTable]);
+        }
+
+        private void ASCE_FindRecordBTN_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                TablesClass.FindRecord(TablesClass.SelectedTable,
+                    ASCE_HelpCB.ValueMember + " = " + ASCE_HelpCB.SelectedValue, new Dictionary<string,Dictionary<string,string>>
+                    {
+                        {Tables.ASSISTANTS.Name(), new Dictionary<string, string> {{AssistantsFileds.ASS_Fullname.Name(), AssistantsFileds.ASS_Code.Name()}}},
+                        {Tables.ORDERS.Name(), new Dictionary<string, string> {{OrdersFileds.ORD_Date.Name(), OrdersFileds.ORD_Code.Name()}}},
+                    }),
+                TablesClass.TableDisplay[TablesClass.SelectedTable]);
+        }
+
+        private void ORD_OrderCB_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string[] names = e.Value.ToString().Split(';');
+            try
+            {
+                e.Value =
+                    $@"Заказчик: {TablesClass.Abbrivation(names[0])} Фотограф: {TablesClass.Abbrivation(names[1])}";
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+
+        private void ASCE_HelpCB_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string[] names = e.Value.ToString().Split(';');
+            try
+            {
+                e.Value =
+                    $@"Ассистент: {TablesClass.Abbrivation(names[0])} Заказчик: {TablesClass.Abbrivation(names[1])} Фотограф: {TablesClass.Abbrivation(names[2])}";
+            }
+            catch
+            {
+                // ignored
+            }
         }
     }
 }

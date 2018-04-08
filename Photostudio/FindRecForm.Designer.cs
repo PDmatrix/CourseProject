@@ -47,15 +47,26 @@
             this.SER_DescriptionCB = new System.Windows.Forms.ComboBox();
             this.AssistanceGB = new System.Windows.Forms.GroupBox();
             this.dataGrid = new System.Windows.Forms.DataGridView();
+            this.ORD_FindRecordBTN = new System.Windows.Forms.Button();
+            this.ORD_OrderLabel = new System.Windows.Forms.Label();
+            this.ORD_OrderCB = new System.Windows.Forms.ComboBox();
+            this.ASCE_FindRecordBTN = new System.Windows.Forms.Button();
+            this.ASCE_HelpLabel = new System.Windows.Forms.Label();
+            this.ASCE_HelpCB = new System.Windows.Forms.ComboBox();
+            this.OrdersGB.SuspendLayout();
             this.PhotographersGB.SuspendLayout();
             this.AssistantsGB.SuspendLayout();
             this.CustomersGB.SuspendLayout();
             this.ServicesGB.SuspendLayout();
+            this.AssistanceGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // OrdersGB
             // 
+            this.OrdersGB.Controls.Add(this.ORD_FindRecordBTN);
+            this.OrdersGB.Controls.Add(this.ORD_OrderLabel);
+            this.OrdersGB.Controls.Add(this.ORD_OrderCB);
             this.OrdersGB.Location = new System.Drawing.Point(12, 12);
             this.OrdersGB.Name = "OrdersGB";
             this.OrdersGB.Size = new System.Drawing.Size(489, 352);
@@ -226,6 +237,9 @@
             // 
             // AssistanceGB
             // 
+            this.AssistanceGB.Controls.Add(this.ASCE_FindRecordBTN);
+            this.AssistanceGB.Controls.Add(this.ASCE_HelpLabel);
+            this.AssistanceGB.Controls.Add(this.ASCE_HelpCB);
             this.AssistanceGB.Location = new System.Drawing.Point(12, 12);
             this.AssistanceGB.Name = "AssistanceGB";
             this.AssistanceGB.Size = new System.Drawing.Size(489, 352);
@@ -242,6 +256,62 @@
             this.dataGrid.Size = new System.Drawing.Size(656, 367);
             this.dataGrid.TabIndex = 5;
             // 
+            // ORD_FindRecordBTN
+            // 
+            this.ORD_FindRecordBTN.Location = new System.Drawing.Point(9, 323);
+            this.ORD_FindRecordBTN.Name = "ORD_FindRecordBTN";
+            this.ORD_FindRecordBTN.Size = new System.Drawing.Size(140, 23);
+            this.ORD_FindRecordBTN.TabIndex = 8;
+            this.ORD_FindRecordBTN.Text = "Найти запись";
+            this.ORD_FindRecordBTN.UseVisualStyleBackColor = true;
+            this.ORD_FindRecordBTN.Click += new System.EventHandler(this.ORD_FindRecordBTN_Click);
+            // 
+            // ORD_OrderLabel
+            // 
+            this.ORD_OrderLabel.AutoSize = true;
+            this.ORD_OrderLabel.Location = new System.Drawing.Point(6, 21);
+            this.ORD_OrderLabel.Name = "ORD_OrderLabel";
+            this.ORD_OrderLabel.Size = new System.Drawing.Size(38, 13);
+            this.ORD_OrderLabel.TabIndex = 7;
+            this.ORD_OrderLabel.Text = "Заказ";
+            // 
+            // ORD_OrderCB
+            // 
+            this.ORD_OrderCB.FormattingEnabled = true;
+            this.ORD_OrderCB.Location = new System.Drawing.Point(20, 37);
+            this.ORD_OrderCB.Name = "ORD_OrderCB";
+            this.ORD_OrderCB.Size = new System.Drawing.Size(387, 21);
+            this.ORD_OrderCB.TabIndex = 6;
+            this.ORD_OrderCB.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ORD_OrderCB_Format);
+            // 
+            // ASCE_FindRecordBTN
+            // 
+            this.ASCE_FindRecordBTN.Location = new System.Drawing.Point(9, 323);
+            this.ASCE_FindRecordBTN.Name = "ASCE_FindRecordBTN";
+            this.ASCE_FindRecordBTN.Size = new System.Drawing.Size(140, 23);
+            this.ASCE_FindRecordBTN.TabIndex = 8;
+            this.ASCE_FindRecordBTN.Text = "Найти запись";
+            this.ASCE_FindRecordBTN.UseVisualStyleBackColor = true;
+            this.ASCE_FindRecordBTN.Click += new System.EventHandler(this.ASCE_FindRecordBTN_Click);
+            // 
+            // ASCE_HelpLabel
+            // 
+            this.ASCE_HelpLabel.AutoSize = true;
+            this.ASCE_HelpLabel.Location = new System.Drawing.Point(6, 21);
+            this.ASCE_HelpLabel.Name = "ASCE_HelpLabel";
+            this.ASCE_HelpLabel.Size = new System.Drawing.Size(50, 13);
+            this.ASCE_HelpLabel.TabIndex = 7;
+            this.ASCE_HelpLabel.Text = "Помощь";
+            // 
+            // ASCE_HelpCB
+            // 
+            this.ASCE_HelpCB.FormattingEnabled = true;
+            this.ASCE_HelpCB.Location = new System.Drawing.Point(20, 37);
+            this.ASCE_HelpCB.Name = "ASCE_HelpCB";
+            this.ASCE_HelpCB.Size = new System.Drawing.Size(463, 21);
+            this.ASCE_HelpCB.TabIndex = 6;
+            this.ASCE_HelpCB.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ASCE_HelpCB_Format);
+            // 
             // FindRecForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,6 +327,8 @@
             this.Name = "FindRecForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Найти запись";
+            this.OrdersGB.ResumeLayout(false);
+            this.OrdersGB.PerformLayout();
             this.PhotographersGB.ResumeLayout(false);
             this.PhotographersGB.PerformLayout();
             this.AssistantsGB.ResumeLayout(false);
@@ -265,6 +337,8 @@
             this.CustomersGB.PerformLayout();
             this.ServicesGB.ResumeLayout(false);
             this.ServicesGB.PerformLayout();
+            this.AssistanceGB.ResumeLayout(false);
+            this.AssistanceGB.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.ResumeLayout(false);
 
@@ -290,5 +364,11 @@
         private System.Windows.Forms.Button SER_FindRecordBTN;
         private System.Windows.Forms.Label SER_DescriptionLabel;
         private System.Windows.Forms.ComboBox SER_DescriptionCB;
+        private System.Windows.Forms.Button ORD_FindRecordBTN;
+        private System.Windows.Forms.Label ORD_OrderLabel;
+        private System.Windows.Forms.ComboBox ORD_OrderCB;
+        private System.Windows.Forms.Button ASCE_FindRecordBTN;
+        private System.Windows.Forms.Label ASCE_HelpLabel;
+        private System.Windows.Forms.ComboBox ASCE_HelpCB;
     }
 }
