@@ -326,7 +326,7 @@
             this.Controls.Add(this.PhotographersGB);
             this.Name = "DeleteRecForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Найти запись";
+            this.Text = "Удалить запись";
             this.OrdersGB.ResumeLayout(false);
             this.OrdersGB.PerformLayout();
             this.PhotographersGB.ResumeLayout(false);

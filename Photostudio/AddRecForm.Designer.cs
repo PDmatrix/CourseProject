@@ -578,12 +578,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1203, 428);
             this.Controls.Add(this.dataGrid);
+            this.Controls.Add(this.AssistantsGB);
             this.Controls.Add(this.AssistanceGB);
             this.Controls.Add(this.PhotographersGB);
             this.Controls.Add(this.OrdersGB);
             this.Controls.Add(this.CustomersGB);
             this.Controls.Add(this.ServicesGB);
-            this.Controls.Add(this.AssistantsGB);
             this.Name = "AddRecForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавить запись";

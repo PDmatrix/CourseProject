@@ -204,6 +204,36 @@ namespace Photostudio
                 Conn.Close();
             }
         }
+
+        public static void EditRecord(string table, Dictionary<string, string> id, Dictionary<string, string> colval)
+        {
+            Conn.Open();
+            DbCommand.Connection = Conn;
+            string vals = "";
+            for (var i = 0; i < colval.Count; i++)
+            {
+                vals += $"{colval.ElementAt(i).Key} = '{colval.ElementAt(i).Value}',";
+            }
+            vals = vals.Remove(vals.Length - 1, 1);
+            try
+            {
+                DbCommand.CommandText = $"UPDATE {table} SET {vals} WHERE {id.First().Key} = {id.First().Value};";
+                DbCommand.ExecuteNonQuery();
+                MessageBox.Show(@"Запись изменена!", @"Успешно", MessageBoxButtons.OK);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(@"Ошибка!" + Environment.NewLine + e.Message, @"Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //throw;
+                //Console.WriteLine(e);
+            }
+            finally
+            {
+                Conn.Close();
+            }
+        }
+
         public static string FindRecord(string table, string cond)
         {
             Conn.Open();
@@ -356,6 +386,51 @@ namespace Photostudio
             var namesplit = fullname.Split(symbol);
             var sec = namesplit[1][0].ToString() == '﻿'.ToString() ? namesplit[1][1] : namesplit[1][0];
             return $"{namesplit[0]} {sec}. {namesplit[2][0]}.";
+        }
+
+        public static void Name(Control.ControlCollection gbCollection, string name)
+        {
+            gbCollection.Find(name, true).FirstOrDefault().Text = "Pidor";
+        }
+
+        public static void ChangeText(Control.ControlCollection gbCollection, string table, string cond, Dictionary<Control, string> ctrlField)
+        {
+            string fields = "";
+            foreach (var item in ctrlField)
+            {
+                fields = fields + item.Value + ',';
+            }
+            fields = fields.Remove(fields.Length - 1, 1);
+            if (Conn.State != ConnectionState.Closed)
+            {
+                Conn.Close();
+            }
+            Conn.Open();
+            DbCommand.Connection = Conn;
+            DbCommand.CommandText = $"select {fields} from {table} where {cond}";
+            try
+            {
+                using (OleDbDataReader reader = DbCommand.ExecuteReader())
+                {
+                    while (reader != null && reader.Read())
+                    {
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            gbCollection.Find(ctrlField.ElementAt(i).Key.Name, true)[0].Text = reader.GetValue(i).ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(@"Ошибка при изменении текста!" + Environment.NewLine + e.Message, @"Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //throw;
+            }
+            finally
+            {
+                Conn.Close();
+            }
         }
     }
 }

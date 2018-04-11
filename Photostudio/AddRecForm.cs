@@ -70,7 +70,7 @@ namespace Photostudio
             TablesClass.AddRecord(Tables.SERVICES.Name(), new Dictionary<string, string>
             {
                 {ServicesFileds.SER_Description.Name(), SER_DescriptionTB.Text},
-                {ServicesFileds.SER_Price.Name(), SER_PriceTB.Text},
+                {ServicesFileds.SER_Price.Name(), SER_PriceTB.Text}
             });
             TablesClass.RefreshGrid(dataGrid);
         }
@@ -81,7 +81,7 @@ namespace Photostudio
             TablesClass.AddRecord(Tables.ASSISTANTS.Name(), new Dictionary<string, string>
             {
                 {AssistantsFileds.ASS_Fullname.Name(), ASS_FullnameTB.Text},
-                {AssistantsFileds.ASS_Phone.Name(), ASS_PhoneMTB.Text},
+                {AssistantsFileds.ASS_Phone.Name(), ASS_PhoneMTB.Text}
             });
             TablesClass.RefreshGrid(dataGrid);
         }
@@ -92,7 +92,7 @@ namespace Photostudio
             TablesClass.AddRecord(Tables.ASSISTANCE.Name(), new Dictionary<string, string>
             {
                 {AssistanceFileds.ASCE_AssCode.Name(), ASCE_AssistantCB.SelectedValue.ToString()},
-                {AssistanceFileds.ASCE_OrdCode.Name(), ASCE_OrderCB.SelectedValue.ToString()},
+                {AssistanceFileds.ASCE_OrdCode.Name(), ASCE_OrderCB.SelectedValue.ToString()}
             });
             TablesClass.RefreshGrid(dataGrid);
         }
