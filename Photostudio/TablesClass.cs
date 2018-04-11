@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -13,6 +12,8 @@ namespace Photostudio
     //Статический класс для работы с таблицами
     public static class TablesClass
     {
+        
+
         //Переменная для выбора таблицы. По умолчанию выбрана таблица ORDERS
         public static string SelectedTable = Tables.ORDERS.Name();
 
@@ -28,7 +29,7 @@ namespace Photostudio
             {Tables.ASSISTANCE.Name(), "Помощь"}
         };
 
-
+        //Все поля базы даынных и названия на русском
         public static readonly Dictionary<string, string> FieldsDisplay = new Dictionary<string, string>
         {
             {AssistantsFileds.ASS_Code.Name(), "Код заказа"},
@@ -112,6 +113,7 @@ namespace Photostudio
             gbCollection.Find(SelectedTable[0] + SelectedTable.ToLower().Remove(0, 1) + "GB", false)[0].Visible = true;
         }
 
+        //Специальное заполнение ComboBox
         public static void FillComboBoxAssistance(ComboBox comboBox)
         {
             Conn.Open();
@@ -127,6 +129,7 @@ namespace Photostudio
             Conn.Close();
         }
 
+        //Специальное заполнение ComboBox
         public static void FillComboBoxFindAssistance(ComboBox comboBox)
         {
             Conn.Open();
@@ -197,7 +200,6 @@ namespace Photostudio
                 MessageBox.Show(@"Запись не добавлена!" + Environment.NewLine + e.Message, @"Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //throw;
-                //Console.WriteLine(e);
             }
             finally
             {
@@ -205,6 +207,7 @@ namespace Photostudio
             }
         }
 
+        //Обновление записи
         public static void EditRecord(string table, Dictionary<string, string> id, Dictionary<string, string> colval)
         {
             Conn.Open();
@@ -234,6 +237,7 @@ namespace Photostudio
             }
         }
 
+        //Простой поиск записи
         public static string FindRecord(string table, string cond)
         {
             Conn.Open();
@@ -269,6 +273,7 @@ namespace Photostudio
             return ret;
         }
 
+        //Поиск записи и замена найденных кодов на значения
         public static string FindRecord(string table, string cond, Dictionary<string, Dictionary<string, string>> vals)
         {
             Conn.Open();
@@ -358,6 +363,7 @@ namespace Photostudio
             return ret;
         }
 
+        //Удаление записи
         public static void DeleteRecord(string table, string cond)
         {
             Conn.Open();
@@ -381,18 +387,15 @@ namespace Photostudio
             }
         }
 
-        public static string Abbrivation(string fullname, char symbol = ' ')
+        //Изменение полного имени на аббривиатуру
+        private static string Abbrivation(string fullname, char symbol = ' ')
         {
             var namesplit = fullname.Split(symbol);
             var sec = namesplit[1][0].ToString() == '﻿'.ToString() ? namesplit[1][1] : namesplit[1][0];
             return $"{namesplit[0]} {sec}. {namesplit[2][0]}.";
         }
 
-        public static void Name(Control.ControlCollection gbCollection, string name)
-        {
-            gbCollection.Find(name, true).FirstOrDefault().Text = "Pidor";
-        }
-
+        //Обновление текстовых и других элементов
         public static void ChangeText(Control.ControlCollection gbCollection, string table, string cond, Dictionary<Control, string> ctrlField)
         {
             string fields = "";
@@ -416,7 +419,19 @@ namespace Photostudio
                     {
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
-                            gbCollection.Find(ctrlField.ElementAt(i).Key.Name, true)[0].Text = reader.GetValue(i).ToString();
+                            var control = gbCollection.Find(ctrlField.ElementAt(i).Key.Name, true)[0];
+                            if (control is CheckBox checkBox)
+                            {
+                                checkBox.Checked = Convert.ToBoolean(reader.GetValue(i).ToString());
+                            }
+                            else if(control is ComboBox comboBox)
+                            {
+                                comboBox.SelectedValue = Convert.ToInt32(reader.GetValue(i));
+                            }
+                            else
+                            {
+                                control.Text = reader.GetValue(i).ToString();
+                            }
                         }
                     }
                 }
@@ -430,6 +445,24 @@ namespace Photostudio
             finally
             {
                 Conn.Close();
+            }
+        }
+
+        //Форматирование ComboBox
+        public static void Format(ref ListControlConvertEventArgs listControl, string format)
+        {
+            try
+            {
+                string[] names = listControl.Value.ToString().Split(';');
+                for (var i = 0; i < names.Length - 1; i++)
+                {
+                        names[i] = Abbrivation(names[i]);
+                }
+                listControl.Value = string.Format(format, names.ToArray<object>());
+            }
+            catch
+            {
+                // ignored
             }
         }
     }

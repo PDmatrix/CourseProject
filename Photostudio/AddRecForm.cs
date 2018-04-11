@@ -19,7 +19,7 @@ namespace Photostudio
         {
             InitializeComponent();
             TablesClass.ShowGroupBox(Controls);
-            TablesClass.RefreshGrid(dataGrid);
+            //TablesClass.RefreshGrid(dataGrid);
             //Заполнение ComboBox в зависимости от выбранной таблицы
             if (TablesClass.SelectedTable == Tables.ORDERS.Name())
             {
@@ -49,7 +49,7 @@ namespace Photostudio
                 {OrdersFileds.ORD_Date.Name(), ORD_DateMTB.Text},
                 {OrdersFileds.ORD_Exec.Name(), Convert.ToInt32(ORD_ExecCB.Checked).ToString()}
             });
-            TablesClass.RefreshGrid(dataGrid);
+            //TablesClass.RefreshGrid(dataGrid);
         }
 
         //Добавление записи в таблицу CUSTOMERS
@@ -61,7 +61,7 @@ namespace Photostudio
                 {CustomerFields.CUS_Adress.Name(), CUS_AdressTB.Text},
                 {CustomerFields.CUS_Phone.Name(), CUS_PhoneMTB.Text}
             });
-            TablesClass.RefreshGrid(dataGrid);
+            //TablesClass.RefreshGrid(dataGrid);
         }
 
         //Добавление записи в таблицу SERVICES
@@ -72,7 +72,7 @@ namespace Photostudio
                 {ServicesFileds.SER_Description.Name(), SER_DescriptionTB.Text},
                 {ServicesFileds.SER_Price.Name(), SER_PriceTB.Text}
             });
-            TablesClass.RefreshGrid(dataGrid);
+            //TablesClass.RefreshGrid(dataGrid);
         }
 
         //Добавление записи в таблицу ASSISTANTS
@@ -83,7 +83,7 @@ namespace Photostudio
                 {AssistantsFileds.ASS_Fullname.Name(), ASS_FullnameTB.Text},
                 {AssistantsFileds.ASS_Phone.Name(), ASS_PhoneMTB.Text}
             });
-            TablesClass.RefreshGrid(dataGrid);
+            //TablesClass.RefreshGrid(dataGrid);
         }
 
         //Добавление записи в таблицу ASSISTANCE
@@ -94,7 +94,7 @@ namespace Photostudio
                 {AssistanceFileds.ASCE_AssCode.Name(), ASCE_AssistantCB.SelectedValue.ToString()},
                 {AssistanceFileds.ASCE_OrdCode.Name(), ASCE_OrderCB.SelectedValue.ToString()}
             });
-            TablesClass.RefreshGrid(dataGrid);
+            //TablesClass.RefreshGrid(dataGrid);
         }
 
         //Добавление записи в таблицу PHOTOGRAPHERS
@@ -108,24 +108,14 @@ namespace Photostudio
                 {PhotographersFileds.PHO_Phone.Name(), PHO_PhoneMTB.Text},
                 {PhotographersFileds.PHO_Adress.Name(), PHO_AdressTB.Text}
             });
-            TablesClass.RefreshGrid(dataGrid);
+            //TablesClass.RefreshGrid(dataGrid);
         }
 
 
         //Форматирование ComboBox для отображения
         private void ASCE_OrderCB_Format(object sender, ListControlConvertEventArgs e)
         {
-            string[] names = e.Value.ToString().Split(';');
-            try
-            {
-                e.Value =
-                    $@"Заказчик: {TablesClass.Abbrivation(names[0])} Фотограф: {TablesClass.Abbrivation(names[1])}";
-            }
-            catch (Exception exception)
-            {
-                //Console.WriteLine(exception);
-                //throw;
-            }
+            TablesClass.Format(ref e, "Заказчик: {0} Фотограф: {1}");
         }
     }
 }

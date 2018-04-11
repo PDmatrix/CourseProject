@@ -27,9 +27,7 @@ namespace Photostudio
         private void ShowForm<T>() where T : Form, new()
         {
             T formVar = new T();
-            this.Hide();
-            formVar.ShowDialog();
-            this.Show();
+            formVar.Show(this);
         }
 
         public MainForm()

@@ -13,11 +13,9 @@ namespace Photostudio
 {
     public partial class FindRecForm : Form
     {
-        public FindRecForm()
+        //Заполнение ComboBox'ов
+        private void RefreshControls()
         {
-            InitializeComponent();
-            TablesClass.ShowGroupBox(Controls);
-            TablesClass.RefreshGrid(dataGrid);
             if (TablesClass.SelectedTable == Tables.ORDERS.Name())
             {
                 TablesClass.FillComboBoxAssistance(ORD_OrderCB);
@@ -48,38 +46,54 @@ namespace Photostudio
             }
         }
 
+        public FindRecForm()
+        {
+            InitializeComponent();
+            TablesClass.ShowGroupBox(Controls);
+            RefreshControls();
+        }
+
+        //Поиск записи таблицы ASSISTANTS
         private void ASS_FindRecordBTN_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
                 TablesClass.FindRecord(TablesClass.SelectedTable,
                     ASS_FullnameCB.ValueMember + " = " + ASS_FullnameCB.SelectedValue),
                 TablesClass.TableDisplay[TablesClass.SelectedTable]);
+            RefreshControls();
         }
 
+        //Поиск записи таблицы PHOTOGRAPHERS
         private void PHO_FindRecordBTN_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
                 TablesClass.FindRecord(TablesClass.SelectedTable,
                     PHO_FullnameCB.ValueMember + " = " + PHO_FullnameCB.SelectedValue),
                 TablesClass.TableDisplay[TablesClass.SelectedTable]);
+            RefreshControls();
         }
 
+        //Поиск записи таблицы CUSTOMERS
         private void CUS_FindRecordBTN_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
                 TablesClass.FindRecord(TablesClass.SelectedTable,
                     CUS_FullnameCB.ValueMember + " = " + CUS_FullnameCB.SelectedValue),
                 TablesClass.TableDisplay[TablesClass.SelectedTable]);
+            RefreshControls();
         }
 
+        //Поиск записи таблицы SERVICES
         private void SER_FindRecordBTN_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
                 TablesClass.FindRecord(TablesClass.SelectedTable,
                     SER_DescriptionCB.ValueMember + " = " + SER_DescriptionCB.SelectedValue),
                 TablesClass.TableDisplay[TablesClass.SelectedTable]);
+            RefreshControls();
         }
 
+        //Поиск записи таблицы ORDERS
         private void ORD_FindRecordBTN_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
@@ -91,8 +105,10 @@ namespace Photostudio
                         {Tables.SERVICES.Name(), new Dictionary<string, string> {{ServicesFileds.SER_Description.Name(), ServicesFileds.SER_Code.Name()}}}
                     }),
                 TablesClass.TableDisplay[TablesClass.SelectedTable]);
+            RefreshControls();
         }
 
+        //Поиск записи таблицы ASSISTANCE
         private void ASCE_FindRecordBTN_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
@@ -103,34 +119,19 @@ namespace Photostudio
                         {Tables.ORDERS.Name(), new Dictionary<string, string> {{OrdersFileds.ORD_Date.Name(), OrdersFileds.ORD_Code.Name()}}},
                     }),
                 TablesClass.TableDisplay[TablesClass.SelectedTable]);
+            RefreshControls();
         }
 
+        //Форматирование ComboBox для отображения
         private void ORD_OrderCB_Format(object sender, ListControlConvertEventArgs e)
         {
-            string[] names = e.Value.ToString().Split(';');
-            try
-            {
-                e.Value =
-                    $@"Заказчик: {TablesClass.Abbrivation(names[0])} Фотограф: {TablesClass.Abbrivation(names[1])}";
-            }
-            catch
-            {
-                // ignored
-            }
+
+            TablesClass.Format(ref e, "Заказчик: {0} Фотограф: {1}");
         }
 
         private void ASCE_HelpCB_Format(object sender, ListControlConvertEventArgs e)
         {
-            string[] names = e.Value.ToString().Split(';');
-            try
-            {
-                e.Value =
-                    $@"Ассистент: {TablesClass.Abbrivation(names[0])} Заказчик: {TablesClass.Abbrivation(names[1])} Фотограф: {TablesClass.Abbrivation(names[2])}";
-            }
-            catch
-            {
-                // ignored
-            }
+            TablesClass.Format(ref e, "Ассистент: {0} Заказчик: {1} Фотограф: {2}");
         }
     }
 }

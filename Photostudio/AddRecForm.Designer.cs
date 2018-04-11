@@ -77,14 +77,12 @@
             this.ASCE_AssistantLabel = new System.Windows.Forms.Label();
             this.ASCE_OrderCB = new System.Windows.Forms.ComboBox();
             this.ASCE_AssistantCB = new System.Windows.Forms.ComboBox();
-            this.dataGrid = new System.Windows.Forms.DataGridView();
             this.OrdersGB.SuspendLayout();
             this.PhotographersGB.SuspendLayout();
             this.AssistantsGB.SuspendLayout();
             this.CustomersGB.SuspendLayout();
             this.ServicesGB.SuspendLayout();
             this.AssistanceGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // OrdersGB
@@ -101,7 +99,7 @@
             this.OrdersGB.Controls.Add(this.ORD_CustomersCB);
             this.OrdersGB.Location = new System.Drawing.Point(12, 12);
             this.OrdersGB.Name = "OrdersGB";
-            this.OrdersGB.Size = new System.Drawing.Size(489, 352);
+            this.OrdersGB.Size = new System.Drawing.Size(376, 245);
             this.OrdersGB.TabIndex = 0;
             this.OrdersGB.TabStop = false;
             this.OrdersGB.Text = "Таблица: Заказы";
@@ -148,15 +146,15 @@
             this.ORD_DateMTB.Location = new System.Drawing.Point(21, 152);
             this.ORD_DateMTB.Mask = "00/00/0000";
             this.ORD_DateMTB.Name = "ORD_DateMTB";
-            this.ORD_DateMTB.Size = new System.Drawing.Size(100, 20);
+            this.ORD_DateMTB.Size = new System.Drawing.Size(63, 20);
             this.ORD_DateMTB.TabIndex = 7;
             this.ORD_DateMTB.ValidatingType = typeof(System.DateTime);
             // 
             // ORD_AddRecordBTN
             // 
-            this.ORD_AddRecordBTN.Location = new System.Drawing.Point(6, 323);
+            this.ORD_AddRecordBTN.Location = new System.Drawing.Point(244, 216);
             this.ORD_AddRecordBTN.Name = "ORD_AddRecordBTN";
-            this.ORD_AddRecordBTN.Size = new System.Drawing.Size(129, 23);
+            this.ORD_AddRecordBTN.Size = new System.Drawing.Size(126, 23);
             this.ORD_AddRecordBTN.TabIndex = 5;
             this.ORD_AddRecordBTN.Text = "Добавить запись";
             this.ORD_AddRecordBTN.UseVisualStyleBackColor = true;
@@ -174,6 +172,7 @@
             // 
             // ORD_ServicesCB
             // 
+            this.ORD_ServicesCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ORD_ServicesCB.FormattingEnabled = true;
             this.ORD_ServicesCB.Location = new System.Drawing.Point(21, 112);
             this.ORD_ServicesCB.Name = "ORD_ServicesCB";
@@ -182,6 +181,7 @@
             // 
             // ORD_PhotographersCB
             // 
+            this.ORD_PhotographersCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ORD_PhotographersCB.FormattingEnabled = true;
             this.ORD_PhotographersCB.Location = new System.Drawing.Point(21, 72);
             this.ORD_PhotographersCB.Name = "ORD_PhotographersCB";
@@ -190,6 +190,7 @@
             // 
             // ORD_CustomersCB
             // 
+            this.ORD_CustomersCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ORD_CustomersCB.FormattingEnabled = true;
             this.ORD_CustomersCB.Location = new System.Drawing.Point(21, 32);
             this.ORD_CustomersCB.Name = "ORD_CustomersCB";
@@ -211,7 +212,7 @@
             this.PhotographersGB.Controls.Add(this.PHO_FullnameTB);
             this.PhotographersGB.Location = new System.Drawing.Point(12, 12);
             this.PhotographersGB.Name = "PhotographersGB";
-            this.PhotographersGB.Size = new System.Drawing.Size(489, 352);
+            this.PhotographersGB.Size = new System.Drawing.Size(376, 245);
             this.PhotographersGB.TabIndex = 1;
             this.PhotographersGB.TabStop = false;
             this.PhotographersGB.Text = "Таблица: Фотографы";
@@ -219,9 +220,9 @@
             // 
             // PHO_AddRecordBTN
             // 
-            this.PHO_AddRecordBTN.Location = new System.Drawing.Point(14, 321);
+            this.PHO_AddRecordBTN.Location = new System.Drawing.Point(244, 216);
             this.PHO_AddRecordBTN.Name = "PHO_AddRecordBTN";
-            this.PHO_AddRecordBTN.Size = new System.Drawing.Size(129, 23);
+            this.PHO_AddRecordBTN.Size = new System.Drawing.Size(126, 23);
             this.PHO_AddRecordBTN.TabIndex = 10;
             this.PHO_AddRecordBTN.Text = "Добавить запись";
             this.PHO_AddRecordBTN.UseVisualStyleBackColor = true;
@@ -276,7 +277,7 @@
             // 
             this.PHO_AdressTB.Location = new System.Drawing.Point(32, 191);
             this.PHO_AdressTB.Name = "PHO_AdressTB";
-            this.PHO_AdressTB.Size = new System.Drawing.Size(150, 20);
+            this.PHO_AdressTB.Size = new System.Drawing.Size(195, 20);
             this.PHO_AdressTB.TabIndex = 4;
             // 
             // PHO_PhoneMTB
@@ -284,7 +285,7 @@
             this.PHO_PhoneMTB.Location = new System.Drawing.Point(32, 152);
             this.PHO_PhoneMTB.Mask = "0-000-000-00-00";
             this.PHO_PhoneMTB.Name = "PHO_PhoneMTB";
-            this.PHO_PhoneMTB.Size = new System.Drawing.Size(150, 20);
+            this.PHO_PhoneMTB.Size = new System.Drawing.Size(89, 20);
             this.PHO_PhoneMTB.TabIndex = 3;
             this.PHO_PhoneMTB.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
@@ -293,7 +294,7 @@
             this.PHO_DateMTB.Location = new System.Drawing.Point(32, 111);
             this.PHO_DateMTB.Mask = "00/00/0000";
             this.PHO_DateMTB.Name = "PHO_DateMTB";
-            this.PHO_DateMTB.Size = new System.Drawing.Size(150, 20);
+            this.PHO_DateMTB.Size = new System.Drawing.Size(63, 20);
             this.PHO_DateMTB.TabIndex = 2;
             this.PHO_DateMTB.ValidatingType = typeof(System.DateTime);
             // 
@@ -301,14 +302,14 @@
             // 
             this.PHO_ExperienceTB.Location = new System.Drawing.Point(32, 72);
             this.PHO_ExperienceTB.Name = "PHO_ExperienceTB";
-            this.PHO_ExperienceTB.Size = new System.Drawing.Size(150, 20);
+            this.PHO_ExperienceTB.Size = new System.Drawing.Size(195, 20);
             this.PHO_ExperienceTB.TabIndex = 1;
             // 
             // PHO_FullnameTB
             // 
             this.PHO_FullnameTB.Location = new System.Drawing.Point(32, 32);
             this.PHO_FullnameTB.Name = "PHO_FullnameTB";
-            this.PHO_FullnameTB.Size = new System.Drawing.Size(150, 20);
+            this.PHO_FullnameTB.Size = new System.Drawing.Size(195, 20);
             this.PHO_FullnameTB.TabIndex = 0;
             // 
             // AssistantsGB
@@ -320,7 +321,7 @@
             this.AssistantsGB.Controls.Add(this.ASS_FullnameLabel);
             this.AssistantsGB.Location = new System.Drawing.Point(12, 12);
             this.AssistantsGB.Name = "AssistantsGB";
-            this.AssistantsGB.Size = new System.Drawing.Size(489, 352);
+            this.AssistantsGB.Size = new System.Drawing.Size(376, 245);
             this.AssistantsGB.TabIndex = 2;
             this.AssistantsGB.TabStop = false;
             this.AssistantsGB.Text = "Таблица: Ассистенты";
@@ -328,7 +329,7 @@
             // 
             // ASS_AddRecordBTN
             // 
-            this.ASS_AddRecordBTN.Location = new System.Drawing.Point(9, 322);
+            this.ASS_AddRecordBTN.Location = new System.Drawing.Point(244, 216);
             this.ASS_AddRecordBTN.Name = "ASS_AddRecordBTN";
             this.ASS_AddRecordBTN.Size = new System.Drawing.Size(126, 23);
             this.ASS_AddRecordBTN.TabIndex = 4;
@@ -341,7 +342,7 @@
             this.ASS_PhoneMTB.Location = new System.Drawing.Point(22, 73);
             this.ASS_PhoneMTB.Mask = "0-000-000-00-00";
             this.ASS_PhoneMTB.Name = "ASS_PhoneMTB";
-            this.ASS_PhoneMTB.Size = new System.Drawing.Size(97, 20);
+            this.ASS_PhoneMTB.Size = new System.Drawing.Size(83, 20);
             this.ASS_PhoneMTB.TabIndex = 3;
             this.ASS_PhoneMTB.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
@@ -349,7 +350,7 @@
             // 
             this.ASS_FullnameTB.Location = new System.Drawing.Point(22, 36);
             this.ASS_FullnameTB.Name = "ASS_FullnameTB";
-            this.ASS_FullnameTB.Size = new System.Drawing.Size(160, 20);
+            this.ASS_FullnameTB.Size = new System.Drawing.Size(195, 20);
             this.ASS_FullnameTB.TabIndex = 2;
             // 
             // ASS_PhoneLabel
@@ -381,7 +382,7 @@
             this.CustomersGB.Controls.Add(this.CUS_FullnameTB);
             this.CustomersGB.Location = new System.Drawing.Point(12, 12);
             this.CustomersGB.Name = "CustomersGB";
-            this.CustomersGB.Size = new System.Drawing.Size(489, 352);
+            this.CustomersGB.Size = new System.Drawing.Size(376, 245);
             this.CustomersGB.TabIndex = 3;
             this.CustomersGB.TabStop = false;
             this.CustomersGB.Text = "Таблица: Заказчики";
@@ -389,9 +390,9 @@
             // 
             // CUS_AddRecordBTN
             // 
-            this.CUS_AddRecordBTN.Location = new System.Drawing.Point(7, 322);
+            this.CUS_AddRecordBTN.Location = new System.Drawing.Point(244, 216);
             this.CUS_AddRecordBTN.Name = "CUS_AddRecordBTN";
-            this.CUS_AddRecordBTN.Size = new System.Drawing.Size(112, 23);
+            this.CUS_AddRecordBTN.Size = new System.Drawing.Size(126, 23);
             this.CUS_AddRecordBTN.TabIndex = 6;
             this.CUS_AddRecordBTN.Text = "Добавить запись";
             this.CUS_AddRecordBTN.UseVisualStyleBackColor = true;
@@ -429,7 +430,7 @@
             this.CUS_PhoneMTB.Location = new System.Drawing.Point(19, 113);
             this.CUS_PhoneMTB.Mask = "0-000-000-00-00";
             this.CUS_PhoneMTB.Name = "CUS_PhoneMTB";
-            this.CUS_PhoneMTB.Size = new System.Drawing.Size(178, 20);
+            this.CUS_PhoneMTB.Size = new System.Drawing.Size(85, 20);
             this.CUS_PhoneMTB.TabIndex = 2;
             this.CUS_PhoneMTB.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
@@ -437,14 +438,14 @@
             // 
             this.CUS_AdressTB.Location = new System.Drawing.Point(19, 73);
             this.CUS_AdressTB.Name = "CUS_AdressTB";
-            this.CUS_AdressTB.Size = new System.Drawing.Size(178, 20);
+            this.CUS_AdressTB.Size = new System.Drawing.Size(195, 20);
             this.CUS_AdressTB.TabIndex = 1;
             // 
             // CUS_FullnameTB
             // 
             this.CUS_FullnameTB.Location = new System.Drawing.Point(19, 32);
             this.CUS_FullnameTB.Name = "CUS_FullnameTB";
-            this.CUS_FullnameTB.Size = new System.Drawing.Size(178, 20);
+            this.CUS_FullnameTB.Size = new System.Drawing.Size(195, 20);
             this.CUS_FullnameTB.TabIndex = 0;
             // 
             // ServicesGB
@@ -456,7 +457,7 @@
             this.ServicesGB.Controls.Add(this.SER_DescriptionTB);
             this.ServicesGB.Location = new System.Drawing.Point(12, 12);
             this.ServicesGB.Name = "ServicesGB";
-            this.ServicesGB.Size = new System.Drawing.Size(489, 352);
+            this.ServicesGB.Size = new System.Drawing.Size(376, 245);
             this.ServicesGB.TabIndex = 4;
             this.ServicesGB.TabStop = false;
             this.ServicesGB.Text = "Таблица: Услуги";
@@ -464,9 +465,9 @@
             // 
             // SER_AddRecordBTN
             // 
-            this.SER_AddRecordBTN.Location = new System.Drawing.Point(7, 323);
+            this.SER_AddRecordBTN.Location = new System.Drawing.Point(244, 216);
             this.SER_AddRecordBTN.Name = "SER_AddRecordBTN";
-            this.SER_AddRecordBTN.Size = new System.Drawing.Size(115, 23);
+            this.SER_AddRecordBTN.Size = new System.Drawing.Size(126, 23);
             this.SER_AddRecordBTN.TabIndex = 4;
             this.SER_AddRecordBTN.Text = "Добавить запись";
             this.SER_AddRecordBTN.UseVisualStyleBackColor = true;
@@ -494,14 +495,14 @@
             // 
             this.SER_PriceTB.Location = new System.Drawing.Point(19, 74);
             this.SER_PriceTB.Name = "SER_PriceTB";
-            this.SER_PriceTB.Size = new System.Drawing.Size(178, 20);
+            this.SER_PriceTB.Size = new System.Drawing.Size(195, 20);
             this.SER_PriceTB.TabIndex = 1;
             // 
             // SER_DescriptionTB
             // 
             this.SER_DescriptionTB.Location = new System.Drawing.Point(19, 33);
             this.SER_DescriptionTB.Name = "SER_DescriptionTB";
-            this.SER_DescriptionTB.Size = new System.Drawing.Size(178, 20);
+            this.SER_DescriptionTB.Size = new System.Drawing.Size(195, 20);
             this.SER_DescriptionTB.TabIndex = 0;
             // 
             // AssistanceGB
@@ -513,7 +514,7 @@
             this.AssistanceGB.Controls.Add(this.ASCE_AssistantCB);
             this.AssistanceGB.Location = new System.Drawing.Point(12, 12);
             this.AssistanceGB.Name = "AssistanceGB";
-            this.AssistanceGB.Size = new System.Drawing.Size(489, 352);
+            this.AssistanceGB.Size = new System.Drawing.Size(376, 245);
             this.AssistanceGB.TabIndex = 4;
             this.AssistanceGB.TabStop = false;
             this.AssistanceGB.Text = "Таблица: Помощь";
@@ -521,9 +522,9 @@
             // 
             // ASCE_AddRecordBTN
             // 
-            this.ASCE_AddRecordBTN.Location = new System.Drawing.Point(9, 321);
+            this.ASCE_AddRecordBTN.Location = new System.Drawing.Point(244, 216);
             this.ASCE_AddRecordBTN.Name = "ASCE_AddRecordBTN";
-            this.ASCE_AddRecordBTN.Size = new System.Drawing.Size(142, 23);
+            this.ASCE_AddRecordBTN.Size = new System.Drawing.Size(126, 23);
             this.ASCE_AddRecordBTN.TabIndex = 4;
             this.ASCE_AddRecordBTN.Text = "Добавить запись";
             this.ASCE_AddRecordBTN.UseVisualStyleBackColor = true;
@@ -549,42 +550,37 @@
             // 
             // ASCE_OrderCB
             // 
+            this.ASCE_OrderCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ASCE_OrderCB.FormattingEnabled = true;
             this.ASCE_OrderCB.Location = new System.Drawing.Point(32, 75);
             this.ASCE_OrderCB.Name = "ASCE_OrderCB";
-            this.ASCE_OrderCB.Size = new System.Drawing.Size(451, 21);
+            this.ASCE_OrderCB.Size = new System.Drawing.Size(338, 21);
             this.ASCE_OrderCB.TabIndex = 1;
             this.ASCE_OrderCB.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ASCE_OrderCB_Format);
             // 
             // ASCE_AssistantCB
             // 
-            this.ASCE_AssistantCB.FormattingEnabled = true;
+            this.ASCE_AssistantCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ASCE_AssistantCB.Location = new System.Drawing.Point(32, 33);
             this.ASCE_AssistantCB.Name = "ASCE_AssistantCB";
             this.ASCE_AssistantCB.Size = new System.Drawing.Size(185, 21);
             this.ASCE_AssistantCB.TabIndex = 0;
             // 
-            // dataGrid
-            // 
-            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid.Location = new System.Drawing.Point(525, 21);
-            this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(666, 322);
-            this.dataGrid.TabIndex = 5;
-            // 
             // AddRecForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1203, 428);
-            this.Controls.Add(this.dataGrid);
-            this.Controls.Add(this.AssistantsGB);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(400, 269);
             this.Controls.Add(this.AssistanceGB);
             this.Controls.Add(this.PhotographersGB);
             this.Controls.Add(this.OrdersGB);
             this.Controls.Add(this.CustomersGB);
             this.Controls.Add(this.ServicesGB);
+            this.Controls.Add(this.AssistantsGB);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AddRecForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавить запись";
             this.OrdersGB.ResumeLayout(false);
@@ -599,7 +595,6 @@
             this.ServicesGB.PerformLayout();
             this.AssistanceGB.ResumeLayout(false);
             this.AssistanceGB.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -611,7 +606,6 @@
         private System.Windows.Forms.GroupBox CustomersGB;
         private System.Windows.Forms.GroupBox ServicesGB;
         private System.Windows.Forms.GroupBox AssistanceGB;
-        private System.Windows.Forms.DataGridView dataGrid;
         private System.Windows.Forms.Button ORD_AddRecordBTN;
         private System.Windows.Forms.CheckBox ORD_ExecCB;
         private System.Windows.Forms.ComboBox ORD_ServicesCB;

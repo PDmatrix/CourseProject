@@ -6,9 +6,10 @@ namespace Photostudio
 {
     public partial class DeleteRecForm : Form
     {
+        //Функция для обновления всех элеменов
         private void RefreshControls()
         {
-            TablesClass.RefreshGrid(dataGrid);
+            //TablesClass.RefreshGrid(dataGrid);
             if (TablesClass.SelectedTable == Tables.ORDERS.Name())
             {
                 TablesClass.FillComboBoxAssistance(ORD_OrderCB);
@@ -46,68 +47,57 @@ namespace Photostudio
             RefreshControls();
         }
 
+        //Удаление записи из таблицы ASSISTANCE
         private void ASCE_DeleteRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.DeleteRecord(TablesClass.SelectedTable, AssistanceFileds.ASCE_Code.Name() + "=" + ASCE_HelpCB.SelectedValue);
             RefreshControls();
         }
 
+        //Удаление записи из таблицы PHOTOGRAPHERS
         private void PHO_DeleteRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.DeleteRecord(TablesClass.SelectedTable, PhotographersFileds.PHO_Code.Name() + "=" + PHO_FullnameCB.SelectedValue);
             RefreshControls();
         }
 
+        //Удаление записи из таблицы ORDERS
         private void ORD_DeleteRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.DeleteRecord(TablesClass.SelectedTable, OrdersFileds.ORD_Code.Name() + "=" + ORD_OrderCB.SelectedValue);
             RefreshControls();
         }
 
+        //Удаление записи из таблицы CUSTOMERS
         private void CUS_DeleteRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.DeleteRecord(TablesClass.SelectedTable, CustomerFields.CUS_Code.Name() + "=" + CUS_FullnameCB.SelectedValue);
             RefreshControls();
         }
 
+        //Удаление записи из таблицы SERVICES
         private void SER_DeleteRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.DeleteRecord(TablesClass.SelectedTable, ServicesFileds.SER_Code.Name() + "=" + SER_DescriptionCB.SelectedValue);
             RefreshControls();
         }
 
+        //Удаление записи из таблицы ASSISTANTS
         private void ASS_DeleteRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.DeleteRecord(TablesClass.SelectedTable, AssistantsFileds.ASS_Code.Name() + "=" + ASS_FullnameCB.SelectedValue);
             RefreshControls();
         }
 
+        //Форматирование ComboBox для отображения
         private void ASCE_HelpCB_Format(object sender, ListControlConvertEventArgs e)
         {
-            string[] names = e.Value.ToString().Split(';');
-            try
-            {
-                e.Value =
-                    $@"Ассистент: {TablesClass.Abbrivation(names[0])} Заказчик: {TablesClass.Abbrivation(names[1])} Фотограф: {TablesClass.Abbrivation(names[2])}";
-            }
-            catch
-            {
-                // ignored
-            }
+            TablesClass.Format(ref e, "Ассистент: {0} Заказчик: {1} Фотограф: {2}");
         }
 
         private void ORD_OrderCB_Format(object sender, ListControlConvertEventArgs e)
         {
-            string[] names = e.Value.ToString().Split(';');
-            try
-            {
-                e.Value =
-                    $@"Заказчик: {TablesClass.Abbrivation(names[0])} Фотограф: {TablesClass.Abbrivation(names[1])}";
-            }
-            catch
-            {
-                // ignored
-            }
+            TablesClass.Format(ref e, "Заказчик: {0} Фотограф: {1}");
         }
     }
 }

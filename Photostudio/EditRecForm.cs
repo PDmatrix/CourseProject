@@ -12,6 +12,7 @@ namespace Photostudio
 {
     public partial class EditRecForm : Form
     {
+        //Заполнение элементов согласно выбранному элементу ComboBox
         private void ChangeTextPhotographers()
         {
             TablesClass.ChangeText(Controls, TablesClass.SelectedTable.Name(), PhotographersFileds.PHO_Code.Name() + '=' + PHO_FullnameCB.SelectedValue,
@@ -58,16 +59,54 @@ namespace Photostudio
                 });
         }
 
+        private void ChangeTexOrders()
+        {
+
+            TablesClass.ChangeText(Controls, TablesClass.SelectedTable.Name(), OrdersFileds.ORD_Code.Name() + '=' + ORD_OrderCB.SelectedValue,
+                new Dictionary<Control, string>
+                {
+                    {ORD_DateMTB, OrdersFileds.ORD_Date.Name()},
+                    {ORD_ExecCB, OrdersFileds.ORD_Exec.Name()},
+                    {ORD_CustomersCB, OrdersFileds.ORD_CusCode.Name()},
+                    {ORD_PhotographersCB, OrdersFileds.ORD_PhoCode.Name()},
+                    {ORD_ServicesCB, OrdersFileds.ORD_SerCode.Name()}
+                });
+
+        }
+
+        private void ChangeTextAssistance()
+        {
+            TablesClass.ChangeText(Controls, TablesClass.SelectedTable.Name(), AssistanceFileds.ASCE_Code.Name() + '=' + ASCE_HelpCB.SelectedValue,
+                new Dictionary<Control, string>
+                {
+                    {ASCE_AssistantCB, AssistanceFileds.ASCE_AssCode.Name()},
+                    {ASCE_OrderCB, AssistanceFileds.ASCE_OrdCode.Name()}
+                });
+
+        }
+
+        //Функция для обновления всех элеменов
         private void RefreshControls()
         {
-            TablesClass.RefreshGrid(dataGrid);
+            //TablesClass.RefreshGrid(dataGrid);
             if (TablesClass.SelectedTable == Tables.ORDERS.Name())
             {
                 TablesClass.FillComboBoxAssistance(ORD_OrderCB);
+                TablesClass.FillComboBox(ORD_CustomersCB, Tables.CUSTOMERS.Name(), CustomerFields.CUS_Fullname.Name(),
+                    CustomerFields.CUS_Code.Name());
+                TablesClass.FillComboBox(ORD_PhotographersCB, Tables.PHOTOGRAPHERS.Name(),
+                    PhotographersFileds.PHO_Fullname.Name(), PhotographersFileds.PHO_Code.Name());
+                TablesClass.FillComboBox(ORD_ServicesCB, Tables.SERVICES.Name(), ServicesFileds.SER_Description.Name(),
+                    ServicesFileds.SER_Code.Name());
+                ChangeTexOrders();
             }
             else if (TablesClass.SelectedTable == Tables.ASSISTANCE.Name())
             {
                 TablesClass.FillComboBoxFindAssistance(ASCE_HelpCB);
+                TablesClass.FillComboBox(ASCE_AssistantCB, Tables.ASSISTANTS.Name(),
+                    AssistantsFileds.ASS_Fullname.Name(), AssistantsFileds.ASS_Code.Name());
+                TablesClass.FillComboBoxAssistance(ASCE_OrderCB);
+                ChangeTextAssistance();
             }
             else if (TablesClass.SelectedTable == Tables.ASSISTANTS.Name())
             {
@@ -95,8 +134,6 @@ namespace Photostudio
             }
         }
 
-
-
         public EditRecForm()
         {
             InitializeComponent();
@@ -104,34 +141,21 @@ namespace Photostudio
             RefreshControls();
         }
 
-        private void ORD_OrderCB_Format(object sender, ListControlConvertEventArgs e)
+        //Редактирование записи таблицы ASSISTANCE
+        private void ASCE_EditRecordBTN_Click(object sender, EventArgs e)
         {
-            string[] names = e.Value.ToString().Split(';');
-            try
+            TablesClass.EditRecord(TablesClass.SelectedTable.Name(),new Dictionary<string, string>
             {
-                e.Value =
-                    $@"Заказчик: {TablesClass.Abbrivation(names[0])} Фотограф: {TablesClass.Abbrivation(names[1])}";
-            }
-            catch
+                {AssistanceFileds.ASCE_Code.Name(), ASCE_HelpCB.SelectedValue.ToString()}
+            }, new Dictionary<string, string>
             {
-                // ignored
-            }
+                {AssistanceFileds.ASCE_AssCode.Name(), ASCE_AssistantCB.SelectedValue.ToString()},
+                {AssistanceFileds.ASCE_OrdCode.Name(), ASCE_OrderCB.SelectedValue.ToString()}
+            });
+            RefreshControls();
         }
 
-        private void ASCE_HelpCB_Format(object sender, ListControlConvertEventArgs e)
-        {
-            string[] names = e.Value.ToString().Split(';');
-            try
-            {
-                e.Value =
-                    $@"Ассистент: {TablesClass.Abbrivation(names[0])} Заказчик: {TablesClass.Abbrivation(names[1])} Фотограф: {TablesClass.Abbrivation(names[2])}";
-            }
-            catch
-            {
-                // ignored
-            }
-        }
-
+        //Редактирование записи таблицы PHOTOGRAPHERS
         private void PHO_EditRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.EditRecord(TablesClass.SelectedTable.Name(),new Dictionary<string, string>
@@ -149,16 +173,7 @@ namespace Photostudio
             
         }
 
-        private void PHO_FullnameCB_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            ChangeTextPhotographers();
-        }
-
-        private void CUS_FullnameCB_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            ChangeTextCustomers();
-        }
-
+        //Редактирование записи таблицы CUSTOMERS
         private void CUS_EditRecordBTN_Click(object sender, EventArgs e)
         {
             TablesClass.EditRecord(TablesClass.SelectedTable.Name(),new Dictionary<string, string>
@@ -173,11 +188,7 @@ namespace Photostudio
             RefreshControls();
         }
 
-        private void SER_DescriptionCB_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            ChangeTextServices();
-        }
-
+        //Редактирование записи таблицы SERVICES
         private void SER_EditRecordBTN_Click(object sender, EventArgs e)
         {
 
@@ -192,11 +203,7 @@ namespace Photostudio
             RefreshControls();
         }
 
-        private void ASS_FullnameCB_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            ChangeTextAssistants();
-        }
-
+        //Редактирование записи таблицы ASSISTANTS
         private void ASS_EditRecordBTN_Click(object sender, EventArgs e)
         {
 
@@ -209,6 +216,71 @@ namespace Photostudio
                 {AssistantsFileds.ASS_Phone.Name(), ASS_PhoneMTB.Text}
             });
             RefreshControls();
+        }
+
+        //Редактирование записи таблицы ORDERS
+        private void ORD_EditRecordBTN_Click(object sender, EventArgs e)
+        {
+
+            TablesClass.EditRecord(TablesClass.SelectedTable.Name(),new Dictionary<string, string>
+            {
+                {OrdersFileds.ORD_Code.Name(), ORD_OrderCB.SelectedValue.ToString()}
+            }, new Dictionary<string, string>
+            {
+                {OrdersFileds.ORD_CusCode.Name(), ORD_CustomersCB.SelectedValue.ToString()},
+                {OrdersFileds.ORD_PhoCode.Name(), ORD_PhotographersCB.SelectedValue.ToString()},
+                {OrdersFileds.ORD_SerCode.Name(), ORD_ServicesCB.SelectedValue.ToString()},
+                {OrdersFileds.ORD_Date.Name(), ORD_DateMTB.Text},
+                {OrdersFileds.ORD_Exec.Name(), Convert.ToInt32(ORD_ExecCB.Checked).ToString()}
+            });
+            RefreshControls();
+        }
+
+        //Изменение элементов при выборе другого значения в ComboBox
+        private void PHO_FullnameCB_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ChangeTextPhotographers();
+        }
+
+        private void CUS_FullnameCB_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ChangeTextCustomers();
+        }
+
+        private void SER_DescriptionCB_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ChangeTextServices();
+        }
+
+        private void ASS_FullnameCB_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ChangeTextAssistants();
+        }
+
+        private void ORD_OrderCB_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ChangeTexOrders();
+        }
+
+        private void ASCE_HelpCB_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ChangeTextAssistance();
+        }
+
+        //Форматирование ComboBox для отображения
+        private void ASCE_OrderCB_Format(object sender, ListControlConvertEventArgs e)
+        {
+            TablesClass.Format(ref e, "Заказчик: {0} Фотограф: {1}");
+        }
+
+        private void ORD_OrderCB_Format(object sender, ListControlConvertEventArgs e)
+        {
+            TablesClass.Format(ref e, "Заказчик: {0} Фотограф: {1}");
+        }
+
+        private void ASCE_HelpCB_Format(object sender, ListControlConvertEventArgs e)
+        {
+            TablesClass.Format(ref e, "Ассистент: {0} Заказчик: {1} Фотограф: {2}");
         }
     }
 }
