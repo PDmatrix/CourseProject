@@ -211,6 +211,7 @@
             this.reportBtn.TabIndex = 7;
             this.reportBtn.Text = "Составить отчет";
             this.reportBtn.UseVisualStyleBackColor = true;
+            this.reportBtn.Click += new System.EventHandler(this.reportBtn_Click);
             // 
             // MainForm
             // 

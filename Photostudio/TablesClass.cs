@@ -28,7 +28,7 @@ namespace Photostudio
             {Tables.SERVICES.Name(), "Услуги"},
             {Tables.ASSISTANCE.Name(), "Помощь"}
         };
-
+        
         //Все поля базы даынных и названия на русском
         public static readonly Dictionary<string, string> FieldsDisplay = new Dictionary<string, string>
         {
@@ -109,6 +109,7 @@ namespace Photostudio
         //Метод для нахождения GroupBox и установки его видимости
         public static void ShowGroupBox(Control.ControlCollection gbCollection)
         {
+            
             //Форматирует выбранную таблицу: Первая буква заглавная, остальные строчные и к ним добавлятеся постфикс GB
             gbCollection.Find(SelectedTable[0] + SelectedTable.ToLower().Remove(0, 1) + "GB", false)[0].Visible = true;
         }
@@ -464,6 +465,159 @@ namespace Photostudio
             {
                 // ignored
             }
+        }
+
+        public static List<List<string>> GetList(string table)
+        {
+            Conn.Open();
+            DbCommand.Connection = Conn;
+            DbCommand.CommandText = $"select * from {table}";
+            List<List<string>> list = new List<List<string>>();
+            try
+            {
+                using (OleDbDataReader reader = DbCommand.ExecuteReader())
+                {
+                    var headers = false;
+                    while (reader != null && reader.Read())
+                    {
+                        List<string> tempList = new List<string>();
+                        List<string> headList = new List<string>();
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            if (!headers)
+                            {
+                                headList.Add(FieldsDisplay[reader.GetName(i)]);
+                            }
+                            tempList.Add(reader.GetValue(i).GetType().IsEquivalentTo(typeof(DateTime))
+                                ? reader.GetDateTime(i).ToShortDateString()
+                                : (reader.GetValue(i).ToString() == "False")
+                                    ? "Не выполнен"
+                                    : (reader.GetValue(i).ToString() == "True")
+                                        ? "Выполнен"
+                                        : reader.GetValue(i).ToString());
+                        }
+                        if (!headers)
+                        {
+                            list.Add(headList);
+                        }
+                        list.Add(tempList);
+                        headers = true;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(@"Ошибка при поиске!" + Environment.NewLine + e.Message, @"Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //throw;
+            }
+            finally
+            {
+                Conn.Close();
+            }
+
+            return list;
+        }
+
+        public static List<List<string>> GetList(string table, Dictionary<string, Dictionary<string, string>> vals)
+        {
+            Conn.Open();
+            DbCommand.Connection = Conn;
+            DbCommand.CommandText = $"select * from {table}";
+            List<List<string>> list = new List<List<string>>();
+            try
+            {
+                using (OleDbDataReader reader = DbCommand.ExecuteReader())
+                {
+                    var headers = false;
+                    while (reader != null && reader.Read())
+                    {
+                        List<string> tempList = new List<string>();
+                        List<string> headList = new List<string>();
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            if (!headers)
+                            {
+                                headList.Add(FieldsDisplay[reader.GetName(i)]);
+                            }
+                            tempList.Add(reader.GetValue(i).GetType().IsEquivalentTo(typeof(DateTime))
+                                ? reader.GetDateTime(i).ToShortDateString()
+                                : (reader.GetValue(i).ToString() == "False")
+                                    ? "Не выполнен"
+                                    : (reader.GetValue(i).ToString() == "True")
+                                        ? "Выполнен"
+                                        : reader.GetValue(i).ToString());
+                        }
+                        if (!headers)
+                        {
+                            list.Add(headList);
+                        }
+                        list.Add(tempList);
+                        headers = true;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(@"Ошибка при поиске!" + Environment.NewLine + e.Message, @"Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //throw;
+            }
+            finally
+            {
+                Conn.Close();
+            }
+            try
+            {
+                Conn.Open();
+                DbCommand.Connection = Conn;
+                int i;
+                var headers = false;
+                for (i = 1; i < list.Count; i++)
+                {
+                    var conds = new List<string>(list[i].Where(r => int.TryParse(r, out int _)));
+                    conds.RemoveAt(0);
+                    for (int j = 0; j < conds.Count; j++)
+                    {
+                        DbCommand.CommandText = $"select {vals.ElementAt(j).Value.ElementAt(0).Key} from {vals.ElementAt(j).Key} where {vals.ElementAt(j).Value.ElementAt(0).Value} = {conds[j]}";
+                        using (OleDbDataReader reader = DbCommand.ExecuteReader())
+                        {
+                            
+                            while (reader != null && reader.Read())
+                            {
+                                for (int l = 0; l < vals.ElementAt(j).Value.ElementAt(0).Key.Split(',').Length; l++)
+                                {
+                                    var temp = reader.GetValue(l).GetType().IsEquivalentTo(typeof(DateTime))
+                                     ? reader.GetDateTime(l).ToShortDateString()
+                                     : (reader.GetValue(l).ToString() == "False")
+                                         ? "Не выполнен"
+                                         : (reader.GetValue(l).ToString() == "True")
+                                             ? "Выполнен"
+                                             : reader.GetValue(l).ToString();
+                                    list[i][j + 1] = temp;
+                                    if (!headers)
+                                    {
+                                        list[0][j + 1] = FieldsDisplay[reader.GetName(l)];
+                                    } 
+                                }
+                            }
+                        }
+                    }
+                    headers = true;
+                }
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show(@"Ошибка при поиске!" + Environment.NewLine + e.Message, @"Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //throw;
+            }
+            finally
+            {
+                Conn.Close();
+            }
+
+            return list;
         }
     }
 }
