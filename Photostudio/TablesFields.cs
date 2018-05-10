@@ -48,7 +48,8 @@ namespace Photostudio
             PHO_Experience,
             PHO_Date,
             PHO_Phone,
-            PHO_Adress
+            PHO_Adress,
+            PHO_Salary
         }
 
         //Поля таблицы ASSISTANTS
@@ -56,7 +57,8 @@ namespace Photostudio
         {
             ASS_Code,
             ASS_Fullname,
-            ASS_Phone
+            ASS_Phone,
+            ASS_Salary
         }
 
         //Поля таблицы SERVICES

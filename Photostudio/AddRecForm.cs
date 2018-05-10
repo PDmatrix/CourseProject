@@ -81,7 +81,8 @@ namespace Photostudio
             TablesClass.AddRecord(Tables.ASSISTANTS.Name(), new Dictionary<string, string>
             {
                 {AssistantsFileds.ASS_Fullname.Name(), ASS_FullnameTB.Text},
-                {AssistantsFileds.ASS_Phone.Name(), ASS_PhoneMTB.Text}
+                {AssistantsFileds.ASS_Phone.Name(), ASS_PhoneMTB.Text},
+                {AssistantsFileds.ASS_Salary.Name(), ASS_SalaryTB.Text}
             });
             //TablesClass.RefreshGrid(dataGrid);
         }
@@ -106,7 +107,8 @@ namespace Photostudio
                 {PhotographersFileds.PHO_Experience.Name(), PHO_ExperienceTB.Text},
                 {PhotographersFileds.PHO_Date.Name(), PHO_DateMTB.Text},
                 {PhotographersFileds.PHO_Phone.Name(), PHO_PhoneMTB.Text},
-                {PhotographersFileds.PHO_Adress.Name(), PHO_AdressTB.Text}
+                {PhotographersFileds.PHO_Adress.Name(), PHO_AdressTB.Text},
+                {PhotographersFileds.PHO_Salary.Name(), PHO_SalaryTB.Text}
             });
             //TablesClass.RefreshGrid(dataGrid);
         }

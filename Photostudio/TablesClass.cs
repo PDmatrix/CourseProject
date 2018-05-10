@@ -35,6 +35,7 @@ namespace Photostudio
             {AssistantsFileds.ASS_Code.Name(), "Код заказа"},
             {AssistantsFileds.ASS_Fullname.Name(), "ФИО ассистента"},
             {AssistantsFileds.ASS_Phone.Name(), "Номер телефона"},
+            {AssistantsFileds.ASS_Salary.Name(), "Зарплата"},
 
             {CustomerFields.CUS_Code.Name(), "Код заказчика"},
             {CustomerFields.CUS_Fullname.Name(), "ФИО заказчика"},
@@ -54,6 +55,7 @@ namespace Photostudio
             {PhotographersFileds.PHO_Experience.Name(), "Опыт"},
             {PhotographersFileds.PHO_Fullname.Name(), "ФИО фотографа"},
             {PhotographersFileds.PHO_Phone.Name(), "Номер телефона"},
+            {PhotographersFileds.PHO_Salary.Name(), "Зарплата"},
 
             {ServicesFileds.SER_Code.Name(), "Код услуги"},
             {ServicesFileds.SER_Description.Name(), "Описание"},
@@ -73,11 +75,11 @@ namespace Photostudio
             },
             {
                 Tables.PHOTOGRAPHERS.Name(), "Таблица представляет собой фотографов. Содержит код фотографа, " +
-                                             "ФИО, стаж работы, дату рождения, телефон и адрес."
+                                             "ФИО, стаж работы, дату рождения, телефон, адрес и зарплату"
             },
             {
                 Tables.ASSISTANTS.Name(), "Таблица представляет собой ассистентов. Содержит код ассистента, " +
-                                          "ФИО и телефон."
+                                          "ФИО, телефон и зарплату."
             },
             {
                 Tables.CUSTOMERS.Name(), "Таблица представляет собой заказчиков. Содержит код заказчика, " +
@@ -99,7 +101,7 @@ namespace Photostudio
             Path.GetDirectoryName(Path.GetDirectoryName(Environment.CurrentDirectory));
 
         private static readonly string ConnString =
-            $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={CurrentDir}\db.mdb;Persist Security Info=False;";
+            $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\db.mdb;Persist Security Info=False;";
 
         private static readonly OleDbConnection Conn = new OleDbConnection(ConnString);
 
@@ -109,7 +111,6 @@ namespace Photostudio
         //Метод для нахождения GroupBox и установки его видимости
         public static void ShowGroupBox(Control.ControlCollection gbCollection)
         {
-            
             //Форматирует выбранную таблицу: Первая буква заглавная, остальные строчные и к ним добавлятеся постфикс GB
             gbCollection.Find(SelectedTable[0] + SelectedTable.ToLower().Remove(0, 1) + "GB", false)[0].Visible = true;
         }
@@ -227,7 +228,7 @@ namespace Photostudio
             }
             catch (Exception e)
             {
-                MessageBox.Show(@"Ошибка!" + Environment.NewLine + e.Message, @"Ошибка",
+                MessageBox.Show(@"Ошибка редактирования!" + Environment.NewLine + e.Message, @"Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //throw;
                 //Console.WriteLine(e);

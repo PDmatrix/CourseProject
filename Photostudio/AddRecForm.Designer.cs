@@ -40,6 +40,8 @@
             this.ORD_PhotographersCB = new System.Windows.Forms.ComboBox();
             this.ORD_CustomersCB = new System.Windows.Forms.ComboBox();
             this.PhotographersGB = new System.Windows.Forms.GroupBox();
+            this.PHO_SalaryTB = new System.Windows.Forms.TextBox();
+            this.PHO_SalaryLabel = new System.Windows.Forms.Label();
             this.PHO_AddRecordBTN = new System.Windows.Forms.Button();
             this.PHO_AdressLabel = new System.Windows.Forms.Label();
             this.PHO_PhoneLabel = new System.Windows.Forms.Label();
@@ -77,6 +79,8 @@
             this.ASCE_AssistantLabel = new System.Windows.Forms.Label();
             this.ASCE_OrderCB = new System.Windows.Forms.ComboBox();
             this.ASCE_AssistantCB = new System.Windows.Forms.ComboBox();
+            this.ASS_SalaryLabel = new System.Windows.Forms.Label();
+            this.ASS_SalaryTB = new System.Windows.Forms.TextBox();
             this.OrdersGB.SuspendLayout();
             this.PhotographersGB.SuspendLayout();
             this.AssistantsGB.SuspendLayout();
@@ -99,7 +103,7 @@
             this.OrdersGB.Controls.Add(this.ORD_CustomersCB);
             this.OrdersGB.Location = new System.Drawing.Point(12, 12);
             this.OrdersGB.Name = "OrdersGB";
-            this.OrdersGB.Size = new System.Drawing.Size(376, 245);
+            this.OrdersGB.Size = new System.Drawing.Size(376, 300);
             this.OrdersGB.TabIndex = 0;
             this.OrdersGB.TabStop = false;
             this.OrdersGB.Text = "Таблица: Заказы";
@@ -152,7 +156,7 @@
             // 
             // ORD_AddRecordBTN
             // 
-            this.ORD_AddRecordBTN.Location = new System.Drawing.Point(244, 216);
+            this.ORD_AddRecordBTN.Location = new System.Drawing.Point(244, 271);
             this.ORD_AddRecordBTN.Name = "ORD_AddRecordBTN";
             this.ORD_AddRecordBTN.Size = new System.Drawing.Size(126, 23);
             this.ORD_AddRecordBTN.TabIndex = 5;
@@ -199,6 +203,8 @@
             // 
             // PhotographersGB
             // 
+            this.PhotographersGB.Controls.Add(this.PHO_SalaryTB);
+            this.PhotographersGB.Controls.Add(this.PHO_SalaryLabel);
             this.PhotographersGB.Controls.Add(this.PHO_AddRecordBTN);
             this.PhotographersGB.Controls.Add(this.PHO_AdressLabel);
             this.PhotographersGB.Controls.Add(this.PHO_PhoneLabel);
@@ -212,15 +218,31 @@
             this.PhotographersGB.Controls.Add(this.PHO_FullnameTB);
             this.PhotographersGB.Location = new System.Drawing.Point(12, 12);
             this.PhotographersGB.Name = "PhotographersGB";
-            this.PhotographersGB.Size = new System.Drawing.Size(376, 245);
+            this.PhotographersGB.Size = new System.Drawing.Size(376, 300);
             this.PhotographersGB.TabIndex = 1;
             this.PhotographersGB.TabStop = false;
             this.PhotographersGB.Text = "Таблица: Фотографы";
             this.PhotographersGB.Visible = false;
             // 
+            // PHO_SalaryTB
+            // 
+            this.PHO_SalaryTB.Location = new System.Drawing.Point(32, 237);
+            this.PHO_SalaryTB.Name = "PHO_SalaryTB";
+            this.PHO_SalaryTB.Size = new System.Drawing.Size(195, 20);
+            this.PHO_SalaryTB.TabIndex = 12;
+            // 
+            // PHO_SalaryLabel
+            // 
+            this.PHO_SalaryLabel.AutoSize = true;
+            this.PHO_SalaryLabel.Location = new System.Drawing.Point(11, 221);
+            this.PHO_SalaryLabel.Name = "PHO_SalaryLabel";
+            this.PHO_SalaryLabel.Size = new System.Drawing.Size(55, 13);
+            this.PHO_SalaryLabel.TabIndex = 11;
+            this.PHO_SalaryLabel.Text = "Зарплата";
+            // 
             // PHO_AddRecordBTN
             // 
-            this.PHO_AddRecordBTN.Location = new System.Drawing.Point(244, 216);
+            this.PHO_AddRecordBTN.Location = new System.Drawing.Point(244, 271);
             this.PHO_AddRecordBTN.Name = "PHO_AddRecordBTN";
             this.PHO_AddRecordBTN.Size = new System.Drawing.Size(126, 23);
             this.PHO_AddRecordBTN.TabIndex = 10;
@@ -314,6 +336,8 @@
             // 
             // AssistantsGB
             // 
+            this.AssistantsGB.Controls.Add(this.ASS_SalaryTB);
+            this.AssistantsGB.Controls.Add(this.ASS_SalaryLabel);
             this.AssistantsGB.Controls.Add(this.ASS_AddRecordBTN);
             this.AssistantsGB.Controls.Add(this.ASS_PhoneMTB);
             this.AssistantsGB.Controls.Add(this.ASS_FullnameTB);
@@ -321,7 +345,7 @@
             this.AssistantsGB.Controls.Add(this.ASS_FullnameLabel);
             this.AssistantsGB.Location = new System.Drawing.Point(12, 12);
             this.AssistantsGB.Name = "AssistantsGB";
-            this.AssistantsGB.Size = new System.Drawing.Size(376, 245);
+            this.AssistantsGB.Size = new System.Drawing.Size(376, 300);
             this.AssistantsGB.TabIndex = 2;
             this.AssistantsGB.TabStop = false;
             this.AssistantsGB.Text = "Таблица: Ассистенты";
@@ -329,7 +353,7 @@
             // 
             // ASS_AddRecordBTN
             // 
-            this.ASS_AddRecordBTN.Location = new System.Drawing.Point(244, 216);
+            this.ASS_AddRecordBTN.Location = new System.Drawing.Point(244, 271);
             this.ASS_AddRecordBTN.Name = "ASS_AddRecordBTN";
             this.ASS_AddRecordBTN.Size = new System.Drawing.Size(126, 23);
             this.ASS_AddRecordBTN.TabIndex = 4;
@@ -382,7 +406,7 @@
             this.CustomersGB.Controls.Add(this.CUS_FullnameTB);
             this.CustomersGB.Location = new System.Drawing.Point(12, 12);
             this.CustomersGB.Name = "CustomersGB";
-            this.CustomersGB.Size = new System.Drawing.Size(376, 245);
+            this.CustomersGB.Size = new System.Drawing.Size(376, 300);
             this.CustomersGB.TabIndex = 3;
             this.CustomersGB.TabStop = false;
             this.CustomersGB.Text = "Таблица: Заказчики";
@@ -390,7 +414,7 @@
             // 
             // CUS_AddRecordBTN
             // 
-            this.CUS_AddRecordBTN.Location = new System.Drawing.Point(244, 216);
+            this.CUS_AddRecordBTN.Location = new System.Drawing.Point(244, 271);
             this.CUS_AddRecordBTN.Name = "CUS_AddRecordBTN";
             this.CUS_AddRecordBTN.Size = new System.Drawing.Size(126, 23);
             this.CUS_AddRecordBTN.TabIndex = 6;
@@ -457,7 +481,7 @@
             this.ServicesGB.Controls.Add(this.SER_DescriptionTB);
             this.ServicesGB.Location = new System.Drawing.Point(12, 12);
             this.ServicesGB.Name = "ServicesGB";
-            this.ServicesGB.Size = new System.Drawing.Size(376, 245);
+            this.ServicesGB.Size = new System.Drawing.Size(376, 300);
             this.ServicesGB.TabIndex = 4;
             this.ServicesGB.TabStop = false;
             this.ServicesGB.Text = "Таблица: Услуги";
@@ -465,7 +489,7 @@
             // 
             // SER_AddRecordBTN
             // 
-            this.SER_AddRecordBTN.Location = new System.Drawing.Point(244, 216);
+            this.SER_AddRecordBTN.Location = new System.Drawing.Point(244, 271);
             this.SER_AddRecordBTN.Name = "SER_AddRecordBTN";
             this.SER_AddRecordBTN.Size = new System.Drawing.Size(126, 23);
             this.SER_AddRecordBTN.TabIndex = 4;
@@ -514,7 +538,7 @@
             this.AssistanceGB.Controls.Add(this.ASCE_AssistantCB);
             this.AssistanceGB.Location = new System.Drawing.Point(12, 12);
             this.AssistanceGB.Name = "AssistanceGB";
-            this.AssistanceGB.Size = new System.Drawing.Size(376, 245);
+            this.AssistanceGB.Size = new System.Drawing.Size(376, 300);
             this.AssistanceGB.TabIndex = 4;
             this.AssistanceGB.TabStop = false;
             this.AssistanceGB.Text = "Таблица: Помощь";
@@ -522,7 +546,7 @@
             // 
             // ASCE_AddRecordBTN
             // 
-            this.ASCE_AddRecordBTN.Location = new System.Drawing.Point(244, 216);
+            this.ASCE_AddRecordBTN.Location = new System.Drawing.Point(244, 271);
             this.ASCE_AddRecordBTN.Name = "ASCE_AddRecordBTN";
             this.ASCE_AddRecordBTN.Size = new System.Drawing.Size(126, 23);
             this.ASCE_AddRecordBTN.TabIndex = 4;
@@ -566,18 +590,34 @@
             this.ASCE_AssistantCB.Size = new System.Drawing.Size(185, 21);
             this.ASCE_AssistantCB.TabIndex = 0;
             // 
+            // ASS_SalaryLabel
+            // 
+            this.ASS_SalaryLabel.AutoSize = true;
+            this.ASS_SalaryLabel.Location = new System.Drawing.Point(9, 99);
+            this.ASS_SalaryLabel.Name = "ASS_SalaryLabel";
+            this.ASS_SalaryLabel.Size = new System.Drawing.Size(55, 13);
+            this.ASS_SalaryLabel.TabIndex = 5;
+            this.ASS_SalaryLabel.Text = "Зарплата";
+            // 
+            // ASS_SalaryTB
+            // 
+            this.ASS_SalaryTB.Location = new System.Drawing.Point(21, 115);
+            this.ASS_SalaryTB.Name = "ASS_SalaryTB";
+            this.ASS_SalaryTB.Size = new System.Drawing.Size(195, 20);
+            this.ASS_SalaryTB.TabIndex = 6;
+            // 
             // AddRecForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(400, 269);
+            this.ClientSize = new System.Drawing.Size(400, 324);
+            this.Controls.Add(this.AssistantsGB);
             this.Controls.Add(this.AssistanceGB);
             this.Controls.Add(this.PhotographersGB);
             this.Controls.Add(this.OrdersGB);
             this.Controls.Add(this.CustomersGB);
             this.Controls.Add(this.ServicesGB);
-            this.Controls.Add(this.AssistantsGB);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AddRecForm";
             this.ShowInTaskbar = false;
@@ -649,5 +689,9 @@
         private System.Windows.Forms.MaskedTextBox PHO_DateMTB;
         private System.Windows.Forms.TextBox PHO_ExperienceTB;
         private System.Windows.Forms.TextBox PHO_FullnameTB;
+        private System.Windows.Forms.TextBox PHO_SalaryTB;
+        private System.Windows.Forms.Label PHO_SalaryLabel;
+        private System.Windows.Forms.TextBox ASS_SalaryTB;
+        private System.Windows.Forms.Label ASS_SalaryLabel;
     }
 }

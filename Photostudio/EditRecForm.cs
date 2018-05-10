@@ -23,6 +23,7 @@ namespace Photostudio
                     {PHO_DateMTB, PhotographersFileds.PHO_Date.Name()},
                     {PHO_PhoneMTB, PhotographersFileds.PHO_Phone.Name()},
                     {PHO_AdressTB, PhotographersFileds.PHO_Adress.Name()},
+                    {PHO_SalaryTB, PhotographersFileds.PHO_Salary.Name()}
                 });
         }
 
@@ -55,7 +56,8 @@ namespace Photostudio
                 new Dictionary<Control, string>
                 {
                     {ASS_FullnameTB, AssistantsFileds.ASS_Fullname.Name()},
-                    {ASS_PhoneMTB, AssistantsFileds.ASS_Phone.Name()}
+                    {ASS_PhoneMTB, AssistantsFileds.ASS_Phone.Name()},
+                    {ASS_SalaryTB, AssistantsFileds.ASS_Salary.Name()}
                 });
         }
 
@@ -167,7 +169,8 @@ namespace Photostudio
                 {PhotographersFileds.PHO_Experience.Name(), PHO_ExperienceTB.Text},
                 {PhotographersFileds.PHO_Date.Name(), PHO_DateMTB.Text},
                 {PhotographersFileds.PHO_Phone.Name(), PHO_PhoneMTB.Text},
-                {PhotographersFileds.PHO_Adress.Name(), PHO_AdressTB.Text}
+                {PhotographersFileds.PHO_Adress.Name(), PHO_AdressTB.Text},
+                {PhotographersFileds.PHO_Salary.Name(), PHO_SalaryTB.Text}
             });
             RefreshControls();
             
@@ -213,7 +216,8 @@ namespace Photostudio
             }, new Dictionary<string, string>
             {
                 {AssistantsFileds.ASS_Fullname.Name(), ASS_FullnameTB.Text},
-                {AssistantsFileds.ASS_Phone.Name(), ASS_PhoneMTB.Text}
+                {AssistantsFileds.ASS_Phone.Name(), ASS_PhoneMTB.Text},
+                {AssistantsFileds.ASS_Salary.Name(), ASS_SalaryTB.Text}
             });
             RefreshControls();
         }
