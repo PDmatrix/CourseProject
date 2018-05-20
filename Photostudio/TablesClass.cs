@@ -620,5 +620,71 @@ namespace Photostudio
 
             return list;
         }
+
+        public static string GetSummary()
+        {
+            Conn.Open();
+            DbCommand.Connection = Conn;
+            DbCommand.CommandText = "SELECT ORDERS.ORD_Code, PHOTOGRAPHERS.PHO_Salary, SERVICES.SER_Price, ORDERS.ORD_Date FROM SERVICES INNER JOIN (PHOTOGRAPHERS INNER JOIN ORDERS ON PHOTOGRAPHERS.PHO_Code = ORDERS.ORD_PhoCode) ON SERVICES.SER_Code = ORDERS.ORD_SerCode;";
+            int income = 0, consumption = 0, numOrd = 0;
+            var today = DateTime.Today;
+            var month = new DateTime(today.Year, today.Month, 1);       
+            var first = month.AddMonths(-1);
+            var last = month.AddDays(-1);
+            try
+            {
+                using (OleDbDataReader reader = DbCommand.ExecuteReader())
+                {
+                    while (reader != null && reader.Read())
+                    {
+                        if (Convert.ToDateTime(reader.GetValue(3)) < first ||
+                            Convert.ToDateTime(reader.GetValue(3)) > last) continue;
+                        numOrd++;
+                        income += Convert.ToInt32(reader.GetValue(2));
+                        consumption += Convert.ToInt32(reader.GetValue(1));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(@"Ошибка при поиске!" + Environment.NewLine + e.Message, @"Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //throw;
+            }
+            finally
+            {
+                Conn.Close();
+            }
+            Conn.Open();
+            DbCommand.Connection = Conn;
+            DbCommand.CommandText = "SELECT ORDERS.ORD_Date, ASSISTANTS.ASS_Salary FROM ASSISTANTS INNER JOIN (ORDERS INNER JOIN ASSISTANCE ON ORDERS.ORD_Code = ASSISTANCE.ASCE_OrdCode) ON ASSISTANTS.ASS_Code = ASSISTANCE.ASCE_AssCode;";
+            try
+            {
+                using (OleDbDataReader reader = DbCommand.ExecuteReader())
+                {
+                    while (reader != null && reader.Read())
+                    {
+                        if (Convert.ToDateTime(reader.GetValue(0)) < first ||
+                            Convert.ToDateTime(reader.GetValue(0)) > last) continue;
+                        
+                        consumption += Convert.ToInt32(reader.GetValue(1));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(@"Ошибка при поиске!" + Environment.NewLine + e.Message, @"Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //throw;
+            }
+            finally
+            {
+                Conn.Close();
+            }
+            return  $"Количество заказов: {numOrd}\n" +
+                    $"Доход: {income} руб.\n" +
+                    $"Расход: {consumption} руб.\n" +
+                    $"Чистый заработок: {income - consumption} руб.";;
+        }
     }
 }

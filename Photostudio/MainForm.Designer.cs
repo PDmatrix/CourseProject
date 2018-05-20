@@ -48,11 +48,11 @@
             this.reportBtn = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.reportPanel = new System.Windows.Forms.Panel();
-            this.tableReportBtn = new System.Windows.Forms.Button();
-            this.planBtn = new System.Windows.Forms.Button();
-            this.monthSummaryBtn = new System.Windows.Forms.Button();
-            this.backBtn = new System.Windows.Forms.Button();
             this.viewPlanBtn = new System.Windows.Forms.Button();
+            this.backBtn = new System.Windows.Forms.Button();
+            this.monthSummaryBtn = new System.Windows.Forms.Button();
+            this.planBtn = new System.Windows.Forms.Button();
+            this.tableReportBtn = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.reportPanel.SuspendLayout();
@@ -249,35 +249,15 @@
             this.reportPanel.TabIndex = 9;
             this.reportPanel.Visible = false;
             // 
-            // tableReportBtn
+            // viewPlanBtn
             // 
-            this.tableReportBtn.Location = new System.Drawing.Point(3, 6);
-            this.tableReportBtn.Name = "tableReportBtn";
-            this.tableReportBtn.Size = new System.Drawing.Size(133, 27);
-            this.tableReportBtn.TabIndex = 8;
-            this.tableReportBtn.Text = "Составить отчет";
-            this.tableReportBtn.UseVisualStyleBackColor = true;
-            this.tableReportBtn.Click += new System.EventHandler(this.tableReportBtn_Click);
-            // 
-            // planBtn
-            // 
-            this.planBtn.Location = new System.Drawing.Point(3, 36);
-            this.planBtn.Name = "planBtn";
-            this.planBtn.Size = new System.Drawing.Size(133, 27);
-            this.planBtn.TabIndex = 9;
-            this.planBtn.Text = "Составить план";
-            this.planBtn.UseVisualStyleBackColor = true;
-            this.planBtn.Click += new System.EventHandler(this.planBtn_Click);
-            // 
-            // monthSummaryBtn
-            // 
-            this.monthSummaryBtn.Location = new System.Drawing.Point(3, 102);
-            this.monthSummaryBtn.Name = "monthSummaryBtn";
-            this.monthSummaryBtn.Size = new System.Drawing.Size(133, 27);
-            this.monthSummaryBtn.TabIndex = 10;
-            this.monthSummaryBtn.Text = "Сводка за месяц";
-            this.monthSummaryBtn.UseVisualStyleBackColor = true;
-            this.monthSummaryBtn.Click += new System.EventHandler(this.monthSummaryBtn_Click);
+            this.viewPlanBtn.Location = new System.Drawing.Point(3, 69);
+            this.viewPlanBtn.Name = "viewPlanBtn";
+            this.viewPlanBtn.Size = new System.Drawing.Size(133, 27);
+            this.viewPlanBtn.TabIndex = 12;
+            this.viewPlanBtn.Text = "Посмотреть план";
+            this.viewPlanBtn.UseVisualStyleBackColor = true;
+            this.viewPlanBtn.Click += new System.EventHandler(this.viewPlanBtn_Click);
             // 
             // backBtn
             // 
@@ -289,15 +269,35 @@
             this.backBtn.UseVisualStyleBackColor = true;
             this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
             // 
-            // viewPlanBtn
+            // monthSummaryBtn
             // 
-            this.viewPlanBtn.Location = new System.Drawing.Point(3, 69);
-            this.viewPlanBtn.Name = "viewPlanBtn";
-            this.viewPlanBtn.Size = new System.Drawing.Size(133, 27);
-            this.viewPlanBtn.TabIndex = 12;
-            this.viewPlanBtn.Text = "Посмотреть план";
-            this.viewPlanBtn.UseVisualStyleBackColor = true;
-            this.viewPlanBtn.Click += new System.EventHandler(this.viewPlanBtn_Click);
+            this.monthSummaryBtn.Location = new System.Drawing.Point(3, 102);
+            this.monthSummaryBtn.Name = "monthSummaryBtn";
+            this.monthSummaryBtn.Size = new System.Drawing.Size(133, 27);
+            this.monthSummaryBtn.TabIndex = 10;
+            this.monthSummaryBtn.Text = "Сводка за месяц";
+            this.monthSummaryBtn.UseVisualStyleBackColor = true;
+            this.monthSummaryBtn.Click += new System.EventHandler(this.monthSummaryBtn_Click);
+            // 
+            // planBtn
+            // 
+            this.planBtn.Location = new System.Drawing.Point(3, 36);
+            this.planBtn.Name = "planBtn";
+            this.planBtn.Size = new System.Drawing.Size(133, 27);
+            this.planBtn.TabIndex = 9;
+            this.planBtn.Text = "Составить план";
+            this.planBtn.UseVisualStyleBackColor = true;
+            this.planBtn.Click += new System.EventHandler(this.planBtn_Click);
+            // 
+            // tableReportBtn
+            // 
+            this.tableReportBtn.Location = new System.Drawing.Point(3, 6);
+            this.tableReportBtn.Name = "tableReportBtn";
+            this.tableReportBtn.Size = new System.Drawing.Size(133, 27);
+            this.tableReportBtn.TabIndex = 8;
+            this.tableReportBtn.Text = "Составить отчет";
+            this.tableReportBtn.UseVisualStyleBackColor = true;
+            this.tableReportBtn.Click += new System.EventHandler(this.tableReportBtn_Click);
             // 
             // MainForm
             // 

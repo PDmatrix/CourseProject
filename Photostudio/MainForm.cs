@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -182,7 +183,20 @@ namespace Photostudio
 
         private void monthSummaryBtn_Click(object sender, EventArgs e)
         {
-
+            var dialogResult = MessageBox.Show(@"Вы действительно хотите получить сводку за " +
+                $@"{DateTime.Now.AddMonths(-1).ToString("MMMM").ToLower()} {DateTime.Now.AddMonths(-1).Year} года" ,
+                @"Получение сводки", MessageBoxButtons.YesNo);
+            if (dialogResult != DialogResult.Yes) return;
+            Word._Application application = new Word.Application();
+            Word._Document document = application.Documents.Add();
+            Word.Paragraph paragraph = document.Content.Paragraphs.Add();
+            application.Visible = true;
+            
+            paragraph.Range.Font.Bold = 0;
+            paragraph.Range.Font.Size = 14;
+            paragraph.Range.Font.Name = "Times New Roman";
+            paragraph.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
+            paragraph.Range.Text ="Сводка за " + DateTime.Now.AddMonths(-1).ToString("MMMM") + " " + DateTime.Now.AddMonths(-1).Year + "\n" + TablesClass.GetSummary();
         }
 
         private void viewPlanBtn_Click(object sender, EventArgs e)
