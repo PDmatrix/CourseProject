@@ -32,7 +32,7 @@ namespace Photostudio
         //Все поля базы даынных и названия на русском
         public static readonly Dictionary<string, string> FieldsDisplay = new Dictionary<string, string>
         {
-            {AssistantsFileds.ASS_Code.Name(), "Код заказа"},
+            {AssistantsFileds.ASS_Code.Name(), "Код ассистента"},
             {AssistantsFileds.ASS_Fullname.Name(), "ФИО ассистента"},
             {AssistantsFileds.ASS_Phone.Name(), "Номер телефона"},
             {AssistantsFileds.ASS_Salary.Name(), "Зарплата"},
