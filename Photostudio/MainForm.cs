@@ -37,6 +37,16 @@ namespace Photostudio
         {
             InitializeComponent();
             SelectTable(Tables.ORDERS.Name());
+            rightsLabel.Text = "Роль: " + TablesClass.Rights;
+
+            if(TablesClass.Rights.Equals("Администратор"))
+            {
+                mainAdminPanel.Visible = true;
+            } 
+            else
+            {
+                mainOperPanel.Visible = true;
+            }
         }
 
         private void заказыToolStripMenuItem_Click(object sender, EventArgs e) => SelectTable(Tables.ORDERS.Name());
@@ -63,26 +73,26 @@ namespace Photostudio
 
         private void reportBtn_Click(object sender, EventArgs e)
         {
-            reportPanel.Visible = true;
-            mainPanel.Visible = false;
+            reportAdminPanel.Visible = true;
+            mainAdminPanel.Visible = false;
         }
 
         private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(@"Данное СУБД позволяет вносить запись, редактировать запись, удалять запись, искать запись " +
-                            @"и составлять отчет по выбранной таблице.\n" +
-                            @"Выбор таблицы осуществляется на нажатие кнопки меню Таблицы.\n", @"Помощь");
+                            @"и составлять отчет по выбранной таблице." + Environment.NewLine +
+                            @"Выбор таблицы осуществляется на нажатие кнопки меню Таблицы." + Environment.NewLine, @"Помощь");
         }
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e) => Application.Exit();
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            mainPanel.Visible = true;
-            reportPanel.Visible = false;
+            mainAdminPanel.Visible = true;
+            reportAdminPanel.Visible = false;
         }
 
-        private void tableReportBtn_Click(object sender, EventArgs e)
+        private void TableReport()
         {
             var dbTable = TablesClass.TableDisplay[TablesClass.SelectedTable];
             var dialogResult = MessageBox.Show(@"Вы действительно хотите составить отчет по таблице " + dbTable,
@@ -176,12 +186,17 @@ namespace Photostudio
             }
         }
 
+        private void tableReportBtn_Click(object sender, EventArgs e)
+        {
+            TableReport();
+        }
+
         private void planBtn_Click(object sender, EventArgs e)
         {
             ShowForm<MakePlanForm>();
         }
 
-        private void monthSummaryBtn_Click(object sender, EventArgs e)
+        private void MonthSum()
         {
             var dialogResult = MessageBox.Show(@"Вы действительно хотите получить сводку за " +
                 $@"{DateTime.Now.AddMonths(-1).ToString("MMMM").ToLower()} {DateTime.Now.AddMonths(-1).Year} года" ,
@@ -199,9 +214,52 @@ namespace Photostudio
             paragraph.Range.Text ="Сводка за " + DateTime.Now.AddMonths(-1).ToString("MMMM") + " " + DateTime.Now.AddMonths(-1).Year + "\n" + TablesClass.GetSummary();
         }
 
+        private void monthSummaryBtn_Click(object sender, EventArgs e)
+        {
+            MonthSum();
+        }
+
         private void viewPlanBtn_Click(object sender, EventArgs e)
         {
             ShowForm<ViewPlanForm>();
+        }
+
+        private void сменитьПраваToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowForm<PasswordForm>();
+            this.Hide();
+        }
+
+        private void findOperBtn_Click(object sender, EventArgs e)
+        {
+            ShowForm<FindRecForm>();
+        }
+
+        private void reportOperBtn_Click(object sender, EventArgs e)
+        {
+            reportOperPanel.Visible = true;
+            mainOperPanel.Visible = false;
+        }
+
+        private void checkPlnBtn_Click(object sender, EventArgs e)
+        {
+            ShowForm<ViewPlanForm>();
+        }
+
+        private void sumMonthBtn_Click(object sender, EventArgs e)
+        {
+            MonthSum();
+        }
+
+        private void tableReportOperBtn_Click(object sender, EventArgs e)
+        {
+            TableReport();
+        }
+
+        private void backOperBtn_Click(object sender, EventArgs e)
+        {
+            reportOperPanel.Visible = false;
+            mainOperPanel.Visible = true;
         }
     }
 }

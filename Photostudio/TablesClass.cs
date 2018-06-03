@@ -17,6 +17,8 @@ namespace Photostudio
         //Переменная для выбора таблицы. По умолчанию выбрана таблица ORDERS
         public static string SelectedTable = Tables.ORDERS.Name();
 
+        public static string Rights;
+
         //Все таблицы и названия таблиц на русском языке
         public static readonly Dictionary<string, string> TableDisplay = new Dictionary<string, string>
         {
@@ -468,6 +470,7 @@ namespace Photostudio
             }
         }
 
+        //Простой список записей
         public static List<List<string>> GetList(string table)
         {
             Conn.Open();
@@ -520,6 +523,7 @@ namespace Photostudio
             return list;
         }
 
+        //Список записей с заменой
         public static List<List<string>> GetList(string table, Dictionary<string, Dictionary<string, string>> vals)
         {
             Conn.Open();
@@ -621,6 +625,7 @@ namespace Photostudio
             return list;
         }
 
+        //Сводка за месяц
         public static string GetSummary()
         {
             Conn.Open();

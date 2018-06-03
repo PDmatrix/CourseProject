@@ -19,7 +19,6 @@ namespace Photostudio
         {
             InitializeComponent();
             TablesClass.ShowGroupBox(Controls);
-            //TablesClass.RefreshGrid(dataGrid);
             //Заполнение ComboBox в зависимости от выбранной таблицы
             if (TablesClass.SelectedTable == Tables.ORDERS.Name())
             {

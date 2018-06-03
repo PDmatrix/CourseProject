@@ -31,6 +31,7 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.программаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сменитьПраваToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.таблицыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.заказыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,16 +47,27 @@
             this.deleteRecBtn = new System.Windows.Forms.Button();
             this.tableDescription = new System.Windows.Forms.RichTextBox();
             this.reportBtn = new System.Windows.Forms.Button();
-            this.mainPanel = new System.Windows.Forms.Panel();
-            this.reportPanel = new System.Windows.Forms.Panel();
+            this.mainAdminPanel = new System.Windows.Forms.Panel();
+            this.reportAdminPanel = new System.Windows.Forms.Panel();
             this.viewPlanBtn = new System.Windows.Forms.Button();
             this.backBtn = new System.Windows.Forms.Button();
             this.monthSummaryBtn = new System.Windows.Forms.Button();
             this.planBtn = new System.Windows.Forms.Button();
             this.tableReportBtn = new System.Windows.Forms.Button();
+            this.rightsLabel = new System.Windows.Forms.Label();
+            this.mainOperPanel = new System.Windows.Forms.Panel();
+            this.reportOperBtn = new System.Windows.Forms.Button();
+            this.findOperBtn = new System.Windows.Forms.Button();
+            this.reportOperPanel = new System.Windows.Forms.Panel();
+            this.tableReportOperBtn = new System.Windows.Forms.Button();
+            this.checkPlnBtn = new System.Windows.Forms.Button();
+            this.backOperBtn = new System.Windows.Forms.Button();
+            this.sumMonthBtn = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
-            this.mainPanel.SuspendLayout();
-            this.reportPanel.SuspendLayout();
+            this.mainAdminPanel.SuspendLayout();
+            this.reportAdminPanel.SuspendLayout();
+            this.mainOperPanel.SuspendLayout();
+            this.reportOperPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -73,6 +85,7 @@
             // 
             this.программаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.справкаToolStripMenuItem,
+            this.сменитьПраваToolStripMenuItem,
             this.выходToolStripMenuItem});
             this.программаToolStripMenuItem.Name = "программаToolStripMenuItem";
             this.программаToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
@@ -81,14 +94,21 @@
             // справкаToolStripMenuItem
             // 
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.справкаToolStripMenuItem.Text = "Справка";
             this.справкаToolStripMenuItem.Click += new System.EventHandler(this.справкаToolStripMenuItem_Click);
+            // 
+            // сменитьПраваToolStripMenuItem
+            // 
+            this.сменитьПраваToolStripMenuItem.Name = "сменитьПраваToolStripMenuItem";
+            this.сменитьПраваToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.сменитьПраваToolStripMenuItem.Text = "Сменить права";
+            this.сменитьПраваToolStripMenuItem.Click += new System.EventHandler(this.сменитьПраваToolStripMenuItem_Click);
             // 
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.выходToolStripMenuItem.Text = "Выход";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
@@ -206,7 +226,7 @@
             this.tableDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tableDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tableDescription.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.tableDescription.Location = new System.Drawing.Point(179, 51);
+            this.tableDescription.Location = new System.Drawing.Point(179, 74);
             this.tableDescription.Name = "tableDescription";
             this.tableDescription.ReadOnly = true;
             this.tableDescription.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -224,30 +244,31 @@
             this.reportBtn.UseVisualStyleBackColor = true;
             this.reportBtn.Click += new System.EventHandler(this.reportBtn_Click);
             // 
-            // mainPanel
+            // mainAdminPanel
             // 
-            this.mainPanel.Controls.Add(this.deleteRecBtn);
-            this.mainPanel.Controls.Add(this.reportBtn);
-            this.mainPanel.Controls.Add(this.addRecBtn);
-            this.mainPanel.Controls.Add(this.editRecBtn);
-            this.mainPanel.Controls.Add(this.findRecBtn);
-            this.mainPanel.Location = new System.Drawing.Point(12, 45);
-            this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(161, 166);
-            this.mainPanel.TabIndex = 8;
+            this.mainAdminPanel.Controls.Add(this.deleteRecBtn);
+            this.mainAdminPanel.Controls.Add(this.reportBtn);
+            this.mainAdminPanel.Controls.Add(this.addRecBtn);
+            this.mainAdminPanel.Controls.Add(this.editRecBtn);
+            this.mainAdminPanel.Controls.Add(this.findRecBtn);
+            this.mainAdminPanel.Location = new System.Drawing.Point(12, 45);
+            this.mainAdminPanel.Name = "mainAdminPanel";
+            this.mainAdminPanel.Size = new System.Drawing.Size(161, 166);
+            this.mainAdminPanel.TabIndex = 8;
+            this.mainAdminPanel.Visible = false;
             // 
-            // reportPanel
+            // reportAdminPanel
             // 
-            this.reportPanel.Controls.Add(this.viewPlanBtn);
-            this.reportPanel.Controls.Add(this.backBtn);
-            this.reportPanel.Controls.Add(this.monthSummaryBtn);
-            this.reportPanel.Controls.Add(this.planBtn);
-            this.reportPanel.Controls.Add(this.tableReportBtn);
-            this.reportPanel.Location = new System.Drawing.Point(12, 45);
-            this.reportPanel.Name = "reportPanel";
-            this.reportPanel.Size = new System.Drawing.Size(161, 166);
-            this.reportPanel.TabIndex = 9;
-            this.reportPanel.Visible = false;
+            this.reportAdminPanel.Controls.Add(this.viewPlanBtn);
+            this.reportAdminPanel.Controls.Add(this.backBtn);
+            this.reportAdminPanel.Controls.Add(this.monthSummaryBtn);
+            this.reportAdminPanel.Controls.Add(this.planBtn);
+            this.reportAdminPanel.Controls.Add(this.tableReportBtn);
+            this.reportAdminPanel.Location = new System.Drawing.Point(12, 45);
+            this.reportAdminPanel.Name = "reportAdminPanel";
+            this.reportAdminPanel.Size = new System.Drawing.Size(161, 166);
+            this.reportAdminPanel.TabIndex = 9;
+            this.reportAdminPanel.Visible = false;
             // 
             // viewPlanBtn
             // 
@@ -299,16 +320,113 @@
             this.tableReportBtn.UseVisualStyleBackColor = true;
             this.tableReportBtn.Click += new System.EventHandler(this.tableReportBtn_Click);
             // 
+            // rightsLabel
+            // 
+            this.rightsLabel.AutoSize = true;
+            this.rightsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rightsLabel.Location = new System.Drawing.Point(178, 47);
+            this.rightsLabel.Margin = new System.Windows.Forms.Padding(4);
+            this.rightsLabel.Name = "rightsLabel";
+            this.rightsLabel.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this.rightsLabel.Size = new System.Drawing.Size(96, 20);
+            this.rightsLabel.TabIndex = 10;
+            this.rightsLabel.Text = "selectedTable";
+            // 
+            // mainOperPanel
+            // 
+            this.mainOperPanel.Controls.Add(this.reportOperBtn);
+            this.mainOperPanel.Controls.Add(this.findOperBtn);
+            this.mainOperPanel.Location = new System.Drawing.Point(12, 45);
+            this.mainOperPanel.Name = "mainOperPanel";
+            this.mainOperPanel.Size = new System.Drawing.Size(161, 166);
+            this.mainOperPanel.TabIndex = 11;
+            this.mainOperPanel.Visible = false;
+            // 
+            // reportOperBtn
+            // 
+            this.reportOperBtn.Location = new System.Drawing.Point(3, 39);
+            this.reportOperBtn.Name = "reportOperBtn";
+            this.reportOperBtn.Size = new System.Drawing.Size(133, 27);
+            this.reportOperBtn.TabIndex = 7;
+            this.reportOperBtn.Text = "Отчеты";
+            this.reportOperBtn.UseVisualStyleBackColor = true;
+            this.reportOperBtn.Click += new System.EventHandler(this.reportOperBtn_Click);
+            // 
+            // findOperBtn
+            // 
+            this.findOperBtn.Location = new System.Drawing.Point(3, 8);
+            this.findOperBtn.Name = "findOperBtn";
+            this.findOperBtn.Size = new System.Drawing.Size(133, 27);
+            this.findOperBtn.TabIndex = 4;
+            this.findOperBtn.Text = "Найти запись";
+            this.findOperBtn.UseVisualStyleBackColor = true;
+            this.findOperBtn.Click += new System.EventHandler(this.findOperBtn_Click);
+            // 
+            // reportOperPanel
+            // 
+            this.reportOperPanel.Controls.Add(this.tableReportOperBtn);
+            this.reportOperPanel.Controls.Add(this.checkPlnBtn);
+            this.reportOperPanel.Controls.Add(this.backOperBtn);
+            this.reportOperPanel.Controls.Add(this.sumMonthBtn);
+            this.reportOperPanel.Location = new System.Drawing.Point(12, 45);
+            this.reportOperPanel.Name = "reportOperPanel";
+            this.reportOperPanel.Size = new System.Drawing.Size(161, 166);
+            this.reportOperPanel.TabIndex = 12;
+            this.reportOperPanel.Visible = false;
+            // 
+            // tableReportOperBtn
+            // 
+            this.tableReportOperBtn.Location = new System.Drawing.Point(3, 69);
+            this.tableReportOperBtn.Name = "tableReportOperBtn";
+            this.tableReportOperBtn.Size = new System.Drawing.Size(133, 27);
+            this.tableReportOperBtn.TabIndex = 13;
+            this.tableReportOperBtn.Text = "Составить отчет";
+            this.tableReportOperBtn.UseVisualStyleBackColor = true;
+            this.tableReportOperBtn.Click += new System.EventHandler(this.tableReportOperBtn_Click);
+            // 
+            // checkPlnBtn
+            // 
+            this.checkPlnBtn.Location = new System.Drawing.Point(3, 7);
+            this.checkPlnBtn.Name = "checkPlnBtn";
+            this.checkPlnBtn.Size = new System.Drawing.Size(133, 27);
+            this.checkPlnBtn.TabIndex = 12;
+            this.checkPlnBtn.Text = "Посмотреть план";
+            this.checkPlnBtn.UseVisualStyleBackColor = true;
+            this.checkPlnBtn.Click += new System.EventHandler(this.checkPlnBtn_Click);
+            // 
+            // backOperBtn
+            // 
+            this.backOperBtn.Location = new System.Drawing.Point(3, 100);
+            this.backOperBtn.Name = "backOperBtn";
+            this.backOperBtn.Size = new System.Drawing.Size(133, 27);
+            this.backOperBtn.TabIndex = 11;
+            this.backOperBtn.Text = "<-- Назад";
+            this.backOperBtn.UseVisualStyleBackColor = true;
+            this.backOperBtn.Click += new System.EventHandler(this.backOperBtn_Click);
+            // 
+            // sumMonthBtn
+            // 
+            this.sumMonthBtn.Location = new System.Drawing.Point(3, 39);
+            this.sumMonthBtn.Name = "sumMonthBtn";
+            this.sumMonthBtn.Size = new System.Drawing.Size(133, 27);
+            this.sumMonthBtn.TabIndex = 10;
+            this.sumMonthBtn.Text = "Сводка за месяц";
+            this.sumMonthBtn.UseVisualStyleBackColor = true;
+            this.sumMonthBtn.Click += new System.EventHandler(this.sumMonthBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 223);
+            this.Controls.Add(this.rightsLabel);
             this.Controls.Add(this.tableDescription);
             this.Controls.Add(this.selectedTableLabel);
             this.Controls.Add(this.menuStrip);
-            this.Controls.Add(this.reportPanel);
-            this.Controls.Add(this.mainPanel);
+            this.Controls.Add(this.mainAdminPanel);
+            this.Controls.Add(this.reportOperPanel);
+            this.Controls.Add(this.reportAdminPanel);
+            this.Controls.Add(this.mainOperPanel);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -316,8 +434,10 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            this.mainPanel.ResumeLayout(false);
-            this.reportPanel.ResumeLayout(false);
+            this.mainAdminPanel.ResumeLayout(false);
+            this.reportAdminPanel.ResumeLayout(false);
+            this.mainOperPanel.ResumeLayout(false);
+            this.reportOperPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -343,13 +463,23 @@
         private System.Windows.Forms.RichTextBox tableDescription;
         private System.Windows.Forms.Button reportBtn;
         private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem;
-        private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.Panel reportPanel;
+        private System.Windows.Forms.Panel mainAdminPanel;
+        private System.Windows.Forms.Panel reportAdminPanel;
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Button monthSummaryBtn;
         private System.Windows.Forms.Button planBtn;
         private System.Windows.Forms.Button tableReportBtn;
         private System.Windows.Forms.Button viewPlanBtn;
+        private System.Windows.Forms.ToolStripMenuItem сменитьПраваToolStripMenuItem;
+        private System.Windows.Forms.Label rightsLabel;
+        private System.Windows.Forms.Panel mainOperPanel;
+        private System.Windows.Forms.Button reportOperBtn;
+        private System.Windows.Forms.Button findOperBtn;
+        private System.Windows.Forms.Panel reportOperPanel;
+        private System.Windows.Forms.Button checkPlnBtn;
+        private System.Windows.Forms.Button backOperBtn;
+        private System.Windows.Forms.Button sumMonthBtn;
+        private System.Windows.Forms.Button tableReportOperBtn;
     }
 }
 
